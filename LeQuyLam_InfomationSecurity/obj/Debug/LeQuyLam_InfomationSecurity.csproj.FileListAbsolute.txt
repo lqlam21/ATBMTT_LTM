@@ -1,0 +1,160 @@
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\C#\LeQuyLam_InfomationSecurity\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormKy.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe.config
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\CSharpControl.dll
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.Licensing.dll
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.dll
+D:\C#\TEST_BTL_2\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.xml
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe.config
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.Licensing.dll
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.dll
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\CSharpControl.dll
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.xml
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe.config
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.Licensing.dll
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.dll
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\CSharpControl.dll
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.xml
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\BTL-Cop\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe.config
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.Licensing.dll
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.dll
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\CSharpControl.dll
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.xml
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\HomeWork\BTL - Copy\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\HomeWork\BTL\LeQuyLam_InfomationSecurity\bin\Debug\Guna.UI2.dll
+D:\C#\BTL\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe.config
+D:\C#\BTL\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\BTL\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\BTL\LeQuyLam_InfomationSecurity\bin\Debug\CSharpControl.dll
+D:\C#\BTL\LeQuyLam_InfomationSecurity\bin\Debug\Guna.UI2.dll
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe.config
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.Licensing.dll
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.dll
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\CSharpControl.dll
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\Guna.UI2.dll
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\bin\Debug\Bunifu.UI.WinForms.1.5.3.xml
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csprojAssemblyReference.cache
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormDangKy.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMain.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.FormMainMenu.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormAdmin.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.GenerateResource.cache
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CoreCompileInputs.cache
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
+D:\C#\MyProject-main\MyProject-main\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb

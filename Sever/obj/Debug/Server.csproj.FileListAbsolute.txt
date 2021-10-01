@@ -1,0 +1,28 @@
+D:\C#\TEST_BTL_2\Sever\bin\Debug\Sever.exe.config
+D:\C#\TEST_BTL_2\Sever\bin\Debug\Sever.exe
+D:\C#\TEST_BTL_2\Sever\bin\Debug\Sever.pdb
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Server.csprojAssemblyReference.cache
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Sever.exe
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Sever.pdb
+D:\HomeWork\BTL\Sever\bin\Debug\Sever.exe.config
+D:\HomeWork\BTL\Sever\bin\Debug\Sever.exe
+D:\HomeWork\BTL\Sever\bin\Debug\Sever.pdb
+D:\HomeWork\BTL\Sever\obj\Debug\Server.csprojAssemblyReference.cache
+D:\HomeWork\BTL\Sever\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\HomeWork\BTL\Sever\obj\Debug\Sever.exe
+D:\HomeWork\BTL\Sever\obj\Debug\Sever.pdb
+D:\HomeWork\BTL - Copy\Sever\bin\Debug\Sever.exe.config
+D:\HomeWork\BTL - Copy\Sever\bin\Debug\Sever.exe
+D:\HomeWork\BTL - Copy\Sever\bin\Debug\Sever.pdb
+D:\HomeWork\BTL - Copy\Sever\obj\Debug\Server.csprojAssemblyReference.cache
+D:\HomeWork\BTL - Copy\Sever\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\HomeWork\BTL - Copy\Sever\obj\Debug\Sever.exe
+D:\HomeWork\BTL - Copy\Sever\obj\Debug\Sever.pdb
+D:\C#\BTL\Sever\obj\Debug\Server.csprojAssemblyReference.cache
+D:\C#\BTL\Sever\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\C#\BTL\Sever\obj\Debug\Sever.exe
+D:\C#\BTL\Sever\obj\Debug\Sever.pdb
+D:\C#\BTL\Sever\bin\Debug\Sever.exe.config
+D:\C#\BTL\Sever\bin\Debug\Sever.exe
+D:\C#\BTL\Sever\bin\Debug\Sever.pdb

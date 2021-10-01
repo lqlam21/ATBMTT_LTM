@@ -1,0 +1,7 @@
+D:\C#\TEST_BTL_2\Sever\bin\Debug\Sever.exe.config
+D:\C#\TEST_BTL_2\Sever\bin\Debug\Sever.exe
+D:\C#\TEST_BTL_2\Sever\bin\Debug\Sever.pdb
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Sever.csprojAssemblyReference.cache
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Sever.csproj.CoreCompileInputs.cache
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Sever.exe
+D:\C#\TEST_BTL_2\Sever\obj\Debug\Sever.pdb
