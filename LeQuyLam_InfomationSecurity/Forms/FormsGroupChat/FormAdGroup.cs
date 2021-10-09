@@ -15,8 +15,10 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
     public partial class FormAdGroup : Form
     {
         #region Fields
+        int soMember = 0;
         string username, groupname, grouppass;
         string nguoinhancuoi="";
+        List<string> listUsMember = new List<string>();
         int y;//Tọa độ y của bt tin nhắn
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -34,6 +36,25 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
         #region Event
+        private void FormAdGroup_Load(object sender, EventArgs e)
+        {
+            tbNoiDung.Focus();
+            tbNoiDung.GotFocus += TbNoiDung_GotFocus;
+            tbNoiDung.LostFocus += TbNoiDung_LostFocus;
+            lbTenNhom.Text = groupname;
+            tbMatKhauGr.Text = grouppass;
+            pnLichSu.ControlAdded += PnLichSu_ControlAdded;
+            LoadMess();
+            LoadMemGr();
+        }
+        private void btInvaite_Click(object sender, EventArgs e)
+        {
+            //Yc = [MoiVaoNhom] ~ username ~ tên nhóm
+            Result.Instance.Request("[MoiVaoNhom] ~lam21~1");
+            LoadMemGr();
+            MessageBox.Show("moi tc");
+
+        }
         private void FormAdGroup_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -54,13 +75,8 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         {
             //Yc load tin nhắn = [NewMessGroup] ~ username ~ groupname
             string ketqua = Result.Instance.Request("[NewMessGroup]~" +username + "~" + groupname);
-            if (String.IsNullOrEmpty(ketqua))
-            {
-                timerLoading.Enabled = false;
-                this.Close();
-                MessageBox.Show("Máy chủ không phản hồi");
-            }
-            else if (ketqua != "NULL")
+            string slMember = Result.Instance.Request("[?Member]~" + groupname);
+            if (ketqua != "NULL" && !String.IsNullOrEmpty(ketqua))
             {
                 List<String> dsTinNhan = ketqua.Split('^').ToList();
                 for (int i = 0; i < dsTinNhan.Count; i++)
@@ -107,17 +123,13 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     }
                 }
             }
+            if (!String.IsNullOrEmpty(slMember) && Int32.Parse(slMember) != soMember)
+            {
+                DataGridViewsMember.DataSource = null;
+                DataGridViewsMember.Rows.Clear();
+                LoadMemGr();
+            }
         }//Tải tin nhắn mới
-        private void FormAdGroup_Load(object sender, EventArgs e)
-        {
-            tbNoiDung.Focus();
-            tbNoiDung.GotFocus += TbNoiDung_GotFocus;
-            tbNoiDung.LostFocus += TbNoiDung_LostFocus;
-            lbTenNhom.Text = groupname;
-            tbMatKhauGr.Text = grouppass;
-            pnLichSu.ControlAdded += PnLichSu_ControlAdded;
-            LoadMess();
-        }
         private void PnLichSu_ControlAdded(object sender, ControlEventArgs e)
         {
             pnLichSu.ScrollControlIntoView(e.Control);
@@ -187,8 +199,52 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         {
             this.Close();
         }
+        private void DataGridViewsMember_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == DataGridViewsMember.Columns["dc"].Index)
+            {
+                int id = int.Parse(DataGridViewsMember.Rows[e.RowIndex].Cells["identifier"].Value.ToString()) - 1;
+                string us = listUsMember[id];
+                //Yc = [KGR] ~ groupname ~ us;
+                string yeucau = "[KGR]~" + groupname + "~" + us;
+                string ketqua = Result.Instance.Request(yeucau);
+                if(ketqua != "DONE" || !string.IsNullOrEmpty(ketqua))
+                {
+                    DataGridViewsMember.Rows.RemoveAt(id);
+                }
+                else
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra. Vui lòng thử lại");
+                }
+            }
+        }//Kick
         #endregion
         #region Method
+        private void LoadMemGr()
+        {
+            //Yc load thành viên nhóm = [LoadMemGr] ~ username ~ groupname
+            //Kq trả về  = username + displayname
+            string yeucau = "[LoadMemGr] ~" + username + "~" + groupname;
+            string ketqua = Result.Instance.Request(yeucau);
+            if (ketqua != "NULL" && !string.IsNullOrEmpty(ketqua))
+            {
+                List<string> listMember = ketqua.Split('^').ToList();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Name");
+                int id = 0;
+                foreach (string mem in listMember)
+                {
+                    id++;
+                    string[] row = new string[] { id.ToString(), mem.Split('~')[1] };
+                    listUsMember.Add(mem.Split('~')[0]);
+                    DataGridViewsMember.Rows.Add(row);
+                }
+                soMember = id;
+            }
+            else
+                soMember = 0;
+
+        }
         private void LoadMess()
         {
             //Yc Gửi tin nhắn = [CheckMIGroup] ~ username ~ groupname
@@ -223,12 +279,10 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                         {
                             y += btn.Size.Height + 5; //xuống 5
                             AddMess(btn, lb,dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
-                            uimess++;
                         }
                         else // không cùng 1 người gửi
                         {
                             AddMessln(btn, lb, dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
-                            uimess = 0;
                         }
                     }
                 }

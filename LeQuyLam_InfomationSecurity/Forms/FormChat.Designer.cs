@@ -42,6 +42,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.toolTipGroup = new System.Windows.Forms.ToolTip(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.timerLoadGr = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label4
@@ -152,6 +153,12 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.guna2Elipse1.BorderRadius = 20;
             this.guna2Elipse1.TargetControl = this.flowLayoutNhomChat;
             // 
+            // timerLoadGr
+            // 
+            this.timerLoadGr.Enabled = true;
+            this.timerLoadGr.Interval = 1000;
+            this.timerLoadGr.Tick += new System.EventHandler(this.timerLoadGr_Tick);
+            // 
             // FormChat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,5 +196,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
         private System.Windows.Forms.ToolTip toolTipGroup;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse2;
+        private System.Windows.Forms.Timer timerLoadGr;
     }
 }

@@ -196,7 +196,7 @@ namespace Server
                     //info: [GopY] ~ danhgia ~ ykien
                     string danhgia = noiDung.Split('~')[1];
                     string ykien = noiDung.Split('~')[2];
-                    DataProvider.Instance.ExecuteNonQuery("EXEC USP_GopY N'" + ykien + "', N'" + danhgia + "'");
+                    DataProvider.Instance.ExecuteNonQuery("INSERT INTO GopY VALUES(N'" + ykien + "', N'" + danhgia + "')");
                     skXL.Send(Encoding.UTF8.GetBytes("DONE"));
                     Console.WriteLine("Nhan 1 gop y");
                 }//Góp ý hệ thống
@@ -219,14 +219,14 @@ namespace Server
                     else
                     {
                         GroupChatDAO.Instance.CreateGr(gc.TenNhom, gc.MatKhau, gc.Username);
-                        GroupChatDAO.Instance.AddUserToGroup(gc.Username, gc.TenNhom);
+                        GroupChatDAO.Instance.JoinGr(gc.Username, gc.TenNhom);
                         Console.WriteLine(gc.Username + "- Tao nhom moi -" + gc.TenNhom);
                         traLoi = "TC";
                     }
                     skXL.Send(Encoding.UTF8.GetBytes(traLoi));
 
                 }//Tạo nhóm chat
-                else if (noiDung.StartsWith("[CG]"))
+                else if (noiDung.StartsWith("[LoadGroup]"))
                 {
                     //Yc = [CG] ~ username
                     string username = noiDung.Split('~')[1];
@@ -243,11 +243,16 @@ namespace Server
                     gc.MaHoaPassGr(GroupChatDAO.Instance.TakeKeyGroup(gc.TenNhom));
                     //Kiểm tra tên nhóm có tồn tại hay không
                     bool check = GroupChatDAO.Instance.LoginGr(gc.TenNhom, gc.MatKhau);
+                    bool check2 = GroupChatDAO.Instance.StatusMember(gc.TenNhom, gc.Username);
                     string traLoi;
                     if (!check)
                     {
                         //nhóm không tồn tại hoặc sai mật khẩu
                         traLoi = "KTT";
+                    }
+                    else if(check2  && check)
+                    {
+                        traLoi = "BLOCK";
                     }
                     else
                     {
@@ -299,7 +304,83 @@ namespace Server
                     string traLoi = GroupChatDAO.Instance.NewMessGr(username, tennhom);
                     skXL.Send(Encoding.UTF8.GetBytes(traLoi));
                 }//Tải tin nhắn mới
-                
+                else if (noiDung.StartsWith("[LoadMemGr]"))
+                {
+                    //Yc load thành viên nhóm = [LoadMemGr] ~ username ~ groupname
+                    //noiDung.Split('~')[1] = username
+                    //noiDung.Split('~')[2] = groupname
+                    string traLoi = GroupChatDAO.Instance.LoadMemGr(noiDung.Split('~')[1], noiDung.Split('~')[2]);
+                    skXL.Send(Encoding.UTF8.GetBytes(traLoi));
+                }//Load thành viên trong nhóm chat
+                else if (noiDung.StartsWith("[KGR]"))
+                {
+                    //Yc = [KGR] ~ groupname ~ us;
+                    //noiDung.Split('~')[1] = groupname
+                    //noiDung.Split('~')[2] = us bi kich
+                    GroupChatDAO.Instance.KickMemGr(noiDung.Split('~')[1], noiDung.Split('~')[2]);
+                    Console.WriteLine("-Kick khoi gr");
+                    string traLoi = "DONE";
+                    skXL.Send(Encoding.UTF8.GetBytes(traLoi));
+                }//Kick khỏi gr
+                else if (noiDung.StartsWith("[MoiVaoNhom]"))
+                {
+                    //Yc = [MoiVaoNhom] ~ username ~ tên nhóm
+                    GroupChat gc = new GroupChat();
+                    gc.Username = noiDung.Split('~')[1];
+                    gc.TenNhom = noiDung.Split('~')[2];
+                    bool check = GroupChatDAO.Instance.StatusMember(gc.TenNhom, gc.Username); //Check trạng thái thành viên
+                    //Check username có tồn tại trong CSDL hay không
+                    bool check2 = AccountDAO.Instance.KiemTraTK(gc.Username);
+                    if (check2)
+                    {
+                        if (!check) // Chưa từng tham gia nhóm
+                        {
+                            GroupChatDAO.Instance.JoinGr(gc.Username, gc.TenNhom);
+                        }
+                        else
+                        {
+                            GroupChatDAO.Instance.InvaiteGr(gc.Username, gc.TenNhom);
+                        }
+                        Console.WriteLine(gc.Username + "- Moi vao nhom.");
+                        skXL.Send(Encoding.UTF8.GetBytes("TC"));
+                    }
+                    else
+                    {
+                        skXL.Send(Encoding.UTF8.GetBytes("TB"));
+                    }
+                }//Tìm và vào nhóm
+                else if (noiDung.StartsWith("[?Gr]"))
+                {
+                    //Yc = [?Gr] ~ username
+                    GroupChat gc = new GroupChat();
+                    gc.Username = noiDung.Split('~')[1];
+                    int slMem = GroupChatDAO.Instance.GrLoading(gc.Username);
+                    string traLoi;
+                    if (slMem > 0)
+                    {
+                        traLoi = slMem.ToString();
+                    }
+                    else
+                    {
+                        traLoi = "0";
+                    }
+                    skXL.Send(Encoding.UTF8.GetBytes(traLoi));
+                }//Update nhóm liên tục
+                else if (noiDung.StartsWith("[?Member]"))
+                {
+                    //Yc = [?Member] ~ Group name
+                    int slMem = GroupChatDAO.Instance.MemLoading(noiDung.Split('~')[1]);
+                    string traLoi;
+                    if( slMem >0)
+                    {
+                        traLoi = slMem.ToString();
+                    }
+                    else
+                    {
+                        traLoi = "0";
+                    }
+                    skXL.Send(Encoding.UTF8.GetBytes(traLoi));
+                }//Update nhóm liên tục
                 // Đóng kết nối
                 skXL.Close();
                 skXL.Dispose();

@@ -19,28 +19,30 @@ namespace Server.DAO
         }
         private GroupChatDAO() { }
 
-        public void UpdateKeyGr(string us,string old_key, string new_key)
+        public void UpdateKeyGr(string us, string old_key, string new_key)
         {
             //Lấy danh sách các nhóm của bạn với tư cách trưởng nhóm
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM NhomChat WHERE username = N'" + us + "'");
-            if (data.Rows.Count > 0) {
-                foreach(DataRow row in data.Rows)
+            if (data.Rows.Count > 0)
+            {
+                foreach (DataRow row in data.Rows)
                 {
                     GroupChat myGr = new GroupChat(row);
                     myGr.GiaiMaPassGr(old_key);
                     myGr.MaHoaPassGr(new_key);
                     myGr.TenNhom = row["tennhom"].ToString();
-                    string query_updatePassGr = "EXEC USP_UpdatePassGr N'" + myGr.TenNhom + "',N'" + myGr.MatKhau + "'";
+                    string query_updatePassGr = "UPDATE NhomChat SET matkhau = N'" + myGr.MatKhau + "' WHERE tennhom = N'" + myGr.TenNhom + "'";
                     DataProvider.Instance.ExecuteNonQuery(query_updatePassGr);
-                    DataTable da = DataProvider.Instance.ExecuteQuery("SELECT noidung FROM TinNhan_NhomChat WHERE tennhom = N'" 
+                    DataTable da = DataProvider.Instance.ExecuteQuery("SELECT noidung FROM TinNhan_NhomChat WHERE tennhom = N'"
                         + myGr.TenNhom + "'");
-                    if (da.Rows.Count > 0) {
+                    if (da.Rows.Count > 0)
+                    {
                         foreach (DataRow item in da.Rows)
                         {
                             myGr.TinNhan = item["noidung"].ToString();
                             myGr.GiaiMaTinNhan(old_key);
                             myGr.MaHoaTinNhan(new_key);
-                            string query_updateMess = "EXEC USP_UpdateKeyGr N'" + myGr.TenNhom + "',N'" + myGr.TinNhan + "'";
+                            string query_updateMess = "UPDATE TinNhan_NhomChat SET noidung = N'" + myGr.TinNhan + "' WHERE tennhom = N'" + myGr.TenNhom + "'";
                             DataProvider.Instance.ExecuteNonQuery(query_updateMess);
                         }
                     }
@@ -63,17 +65,12 @@ namespace Server.DAO
                            + us + "')";
             DataProvider.Instance.ExecuteNonQuery(query);
         }//Tạo nhóm mới
-        public void AddUserToGroup(string us, string gn)
-        {
-            string query = "INSERT INTO NhomChat_ThanhVien(username, tennhom) VALUES(N'" + us + "',N'"
-                            + gn + "')";
-            DataProvider.Instance.ExecuteNonQuery(query);
-        }//Thêm người vào nhóm
         public string LoadGroup(string us)
         {
             GroupChat gc = new GroupChat();
             gc.Username = us;
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM NhomChat_ThanhVien WHERE username = N'" + gc.Username + "'");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM NhomChat_ThanhVien WHERE username = N'" + 
+                gc.Username + "' AND trangthai = N'Đang Trong Nhóm'");
             string traloi = "";
             if (data != null && data.Rows.Count > 0)
             {
@@ -108,13 +105,24 @@ namespace Server.DAO
             string query = "EXEC USP_JoinGroup N'" + gn + "',N'" + pass + "'";
             DataTable check = DataProvider.Instance.ExecuteQuery(query);
             if (check.Rows.Count == 0)
-                return false;
+                return false; // Nhập nhóm sai
             else
                 return true;
-        }
+        }//Login vào Gr
+        public bool StatusMember(string gn, string us)
+        {
+            string query = "SELECT * FROM NhomChat_ThanhVien WHERE username = N'" + us +
+                "' AND trangthai = N'Bị Kick' AND tennhom = N'" + gn + "'";
+            DataTable check = DataProvider.Instance.ExecuteQuery(query);
+            if (check.Rows.Count != 0)
+                return true;//Bị trong danh sách bị kích
+            else
+                return false;// Không danh sách bị kick
+        }//Kiểm tra trạng thái của member trong 1 nhóm
         public void JoinGr(string us, string gn)
         {
-            string query = "INSERT INTO NhomChat_ThanhVien(username, tennhom) VALUES(N'" + us + "',N'"+ gn + "')";//Insert vào thành viên nhóm
+            string query = "INSERT INTO NhomChat_ThanhVien(username, tennhom, trangthai) VALUES(N'" + us + "',N'"
+                + gn + "',N'Đang Trong Nhóm')";//Insert vào thành viên nhóm
             DataProvider.Instance.ExecuteNonQuery(query);
         }
         public void DelGr(string gn)
@@ -124,8 +132,73 @@ namespace Server.DAO
         }
         public void OutGr(string us, string gn)
         {
-            string query = "DELETE NhomChat_Thanhvien Where tennhom = N'" + gn + "' AND username = N'" + us + "'";
+            //string query = "DELETE NhomChat_Thanhvien Where tennhom = N'" + gn + "' AND username = N'" + us + "'";
+            string query = "DELETE NhomChat_Thanhvien Where tennhom = N'" 
+                + gn + "' AND username = N'" + us + "'";
             DataProvider.Instance.ExecuteNonQuery(query);
+        }
+        public void InvaiteGr(string us, string gn)
+        {
+            string query = "UPDATE NhomChat_ThanhVien SET trangthai = N'Đang Trong Nhóm' WHERE tennhom = N'" + gn +
+                "' AND username = N'" + us + "'";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+        public string GrStatus(string us)
+        {
+            string query = "SELECT * FROM NhomChat_ThanhVien WHERE trangthai = N'Mời Vào Nhóm' AND username = N'" + us + "'";
+            DataTable stt = DataProvider.Instance.ExecuteQuery(query);
+            string query2 = "SELECT * FROM NhomChat_ThanhVien WHERE trangthai = N'Bans' AND username = N'" + us + "'";
+            DataTable stt2 = DataProvider.Instance.ExecuteQuery(query2);
+            //string traloi = "";
+            if (stt != null && stt.Rows.Count > 0)
+            {
+                //foreach (DataRow r in stt.Rows)
+                //{
+                //    traloi += r["tennhom"].ToString() + "~IN~thanhvien~"+ TakeKeyGroup(r["tennhom"].ToString()) + "^";
+                //}
+                string query3 = "UPDATE NhomChat_ThanhVien SET trangthai = N'Đang Trong Nhóm' WHERE username = N'" + us + "'";
+                DataProvider.Instance.ExecuteNonQuery(query3);
+                //string tl = traloi.Substring(0, traloi.Length - 1);
+                return "DONE";
+                //Trả lời : Tên nhóm ~ chức vụ ~ key nhóm
+            }
+            else if (stt2 != null && stt2.Rows.Count > 0)
+            {
+                //foreach (DataRow r in stt2.Rows)
+                //{
+                //    traloi += r["tennhom"].ToString()+ "~OUT^";
+                //}
+                string query3 = "UPDATE NhomChat_ThanhVien SET trangthai = N'Bị Kick' WHERE trangthai = N'Bans' AND username = N'" + us + "'";
+                DataProvider.Instance.ExecuteNonQuery(query3);
+                //string tl = traloi.Substring(0, traloi.Length - 1);
+                return "DONE";
+            }
+            else
+                return "NULL";
+        }//Loading liên tục gr
+        public int GrLoading(string us)
+        {
+            string query = "SELECT tennhom FROM NhomChat_ThanhVien WHERE username = N'" +
+                us + "' AND trangthai = N'Đang Trong Nhóm'";
+            DataTable da_Gr = DataProvider.Instance.ExecuteQuery(query);
+            if (da_Gr != null && da_Gr.Rows.Count > 0)
+            {
+                return da_Gr.Rows.Count;
+            }
+            else
+                return 0;
+        }
+        public int MemLoading(string gn)
+        {
+            string query = "SELECT username FROM NhomChat_ThanhVien WHERE tennhom = N'" + 
+                gn + "' AND trangthai = N'Đang Trong Nhóm'";
+            DataTable da_Mem = DataProvider.Instance.ExecuteQuery(query);
+            if (da_Mem != null && da_Mem.Rows.Count > 1)
+            {
+                return da_Mem.Rows.Count - 1 ;//Trừ 1 là trừ đi admin
+            }
+            else
+                return 0;
         }
         public string SendToGr(string Username, string TenNhom, string TinNhan)
         {
@@ -135,13 +208,13 @@ namespace Server.DAO
             gc.TenNhom = TenNhom;
             gc.TinNhan = TinNhan;
             gc.MaHoaTinNhan(TakeKeyGroup(gc.TenNhom));
-            string query = "SELECT * FROM NhomChat_ThanhVien WHERE tennhom = N'" + gc.TenNhom+"'";
+            string query = "SELECT * FROM NhomChat_ThanhVien WHERE tennhom = N'" + gc.TenNhom + "' AND trangthai = N'Đang Trong Nhóm'";
             DataTable dl = DataProvider.Instance.ExecuteQuery(query);
             if (dl != null && dl.Rows.Count > 0)
             {
                 for (int i = 0; i < dl.Rows.Count; i++)
                 {
-                    if(dl.Rows[i][0].ToString() == gc.Username)
+                    if (dl.Rows[i][0].ToString() == gc.Username)
                         trangthai = "Đã Nhận";
                     else
                         trangthai = "Đã Gửi";
@@ -149,8 +222,8 @@ namespace Server.DAO
                         "thoigian, nguoigui) Values(N'"
                     + dl.Rows[i][0].ToString() + "', N'"
                     + gc.TenNhom + "', N'"
-                    + gc.TinNhan + "',N'"+trangthai+"', N'"
-                    + DateTime.Now.ToString() + "',N'" 
+                    + gc.TinNhan + "',N'" + trangthai + "', N'"
+                    + DateTime.Now.ToString() + "',N'"
                     + gc.Username + "')";
                     DataProvider.Instance.ExecuteNonQuery(querysend2);
                 }
@@ -164,7 +237,7 @@ namespace Server.DAO
             gc.TenNhom = gn;
             MD5Helper md5 = new MD5Helper(TakeKeyGroup(gc.TenNhom));
             string query = "SELECT * FROM TinNhan_NhomChat WHERE tennhom = N'" + gc.TenNhom + "' " +
-                "and trangthai = N'Đã Nhận' and username =N'"+ gc.Username + "'";
+                "and trangthai = N'Đã Nhận' and username =N'" + gc.Username + "'";
             DataTable mess = DataProvider.Instance.ExecuteQuery(query);
             string traLoi = "";
             string tenhienthi;
@@ -177,7 +250,7 @@ namespace Server.DAO
                     else
                         tenhienthi = DisPlayName(r["nguoigui"].ToString());
                     traLoi += tenhienthi + "~" + md5.GiaiMa(r["noidung"].ToString()) + "~"
-                        + r["thoigian"].ToString() +"~"+ r["nguoigui"].ToString() +"~" + gc.Username + "^";
+                        + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~" + gc.Username + "^";
                 }
                 return traLoi = traLoi.Substring(0, traLoi.Length - 1);
                 //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc
@@ -187,7 +260,8 @@ namespace Server.DAO
                 return traLoi = "NULL";
             }
         }
-        public string NewMessGr(string us, string gn) {
+        public string NewMessGr(string us, string gn)
+        {
             GroupChat gc = new GroupChat();
             gc.Username = us;
             gc.TenNhom = gn;
@@ -203,7 +277,7 @@ namespace Server.DAO
                 {
                     string nguoigui = DisPlayName(r["nguoigui"].ToString());
                     traLoi += nguoigui + "~" + md5.GiaiMa(r["noidung"].ToString()) + "~"
-                        + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() +"~"+ gc.Username + "^";
+                        + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~" + gc.Username + "^";
                 }
                 foreach (DataRow r in mess.Rows)
                 {
@@ -219,6 +293,32 @@ namespace Server.DAO
                 return traLoi = "NULL";
             }
             //Xóa dữ liệu đã nhận của user
+        }
+        public string LoadMemGr(string us, string gn)
+        {
+            GroupChat gc = new GroupChat();
+            gc.Username = us;
+            string traloi = "";
+            string query = "SELECT username FROM NhomChat_ThanhVien WHERE username != N'" +
+                gc.Username + "' and tennhom = N'" + gn + "' AND trangthai = N'Đang Trong Nhóm'";
+            DataTable da_usMem = DataProvider.Instance.ExecuteQuery(query);
+            if (da_usMem != null && da_usMem.Rows.Count > 0)//Có tin nhắn
+            {
+                foreach (DataRow r in da_usMem.Rows)
+                {
+                    traloi += r["username"].ToString() + "~" + DisPlayName(r["username"].ToString()) + "^";
+                }
+                return traloi.Substring(0, traloi.Length - 1);
+            }
+            else
+                return traloi = "NULL";
+        }
+        public void KickMemGr(string gn, string us)
+        {
+            //Yc = [KGR] ~ groupname ~ us;
+            string query = "UPDATE NhomChat_ThanhVien SET trangthai = N'Bị Kick' WHERE tennhom = N'" + 
+                gn + "' AND username = N'" + us + "'";
+            DataProvider.Instance.ExecuteNonQuery(query);
         }
         private string DisPlayName(string us)
         {

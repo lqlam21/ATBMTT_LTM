@@ -12,6 +12,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
     {
         #region Field
         string username,sTenNhom,sChucVu,key;
+        int soluongGroup = 0;
         List<string> lsGroup = new List<string>();
         #endregion
         public FormChat(string us,string k)
@@ -44,15 +45,17 @@ namespace LeQuyLam_InfomationSecurity.Forms
         private void LoadGroup(string us)
         {
             //Yc = [MyGroup] ~ username
-            string yeucau = "[CG]~" + us;
+            string yeucau = "[LoadGroup]~" + us;
             string ketqua = Result.Instance.Request(yeucau);
             if (!String.IsNullOrEmpty(ketqua) && !ketqua.Equals("[NULL]"))
             {
                 List<String> mygr = ketqua.Split('^').ToList();
                 //Bóc tách dữ liệu
                 lsGroup.Clear();
+                int id = 0;
                 foreach (String item in mygr)
                 {
+                    id++;
                     string tennhom = item.Split('~')[0].ToString();
                     lsGroup.Add(tennhom);//Gán tên nhóm vào list
                     Button btn = new Button() { Width = 100, Height = 100 }; //Thêm button vào flowlayout
@@ -63,7 +66,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     btn.FlatStyle = FlatStyle.Flat;
                     btn.FlatAppearance.BorderSize = 0;
                     Guna2Elipse elip = new Guna2Elipse();
-                    elip.BorderRadius= 30;
+                    elip.BorderRadius = 30;
                     elip.SetElipse(btn);
                     //Xử lý màu backgr cho các nhóm quản lý
                     if (item.Split('~')[2].ToString() == "truongnhom")
@@ -81,12 +84,15 @@ namespace LeQuyLam_InfomationSecurity.Forms
                         btn.Text = tennhom;
                         cms.Items.Add("Rời nhóm");
                         btn.ContextMenuStrip = cms;
-                        cms.Items[0].Click += OutGroup_Click2;
+                        cms.Items[0].Click += OutGroup_Click;
                         toolTipGroup.SetToolTip(btn, "Nhấn chuột phải để chọn rời nhóm");
                     }//Xử lý khi nhóm chat user đó là thành viên
                 }
+                soluongGroup = id;
                 lbStt.Text = "";
             }
+            else
+                soluongGroup = 0;
         }
         #endregion
 
@@ -106,7 +112,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 return;
             }
         }
-        private void OutGroup_Click2(object sender, EventArgs e)
+        private void OutGroup_Click(object sender, EventArgs e)
         {
             //Yêu cầu rời: [OutGr] ~ tên nhóm
             string yeucau = "[OutGr]~" + sTenNhom + "~" + username;
@@ -152,10 +158,22 @@ namespace LeQuyLam_InfomationSecurity.Forms
             else
                 return false;
         }//Kiểm tra bạn đã trong nhóm hay chưa
+
+        private void timerLoadGr_Tick(object sender, EventArgs e)
+        {
+            //Yc = [?Gr] ~ username
+            string ketqua = Result.Instance.Request("[?Gr]~" + username);
+            if(!string.IsNullOrEmpty(ketqua) && Int32.Parse(ketqua) != soluongGroup) //Có xảy ra cập nhật
+            {
+                LoadingGroup();
+            }
+        }
+
         private void FormChat_Load(object sender, EventArgs e)
         {
             LoadTheme();
             LoadingGroup();
+            timerLoadGr.Start();
         }
         private void btTaoNhom_Click(object sender, EventArgs e)
         {
@@ -186,7 +204,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     MessageBox.Show("Tạo thành công.");
                     tbTenNhom.Text = "";
                     tbMatKhau.Text = "";
-                    LoadingGroup();
+                    //LoadingGroup();
                 }
                 else
                 {
@@ -224,10 +242,17 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     tbTenNhom.Focus();
                     return;
                 }
+                if (ketqua == "BLOCK")
+                {
+                    MessageBox.Show("Hiện tại bạn chỉ có thể tham gia nhóm khi được Host mời.","Bạn bị kick khỏi nhóm");
+                    tbTenNhom.Text = "";
+                    tbMatKhau.Text = "";
+                    tbTenNhom.Focus();
+                    return;
+                }
                 else if (ketqua == "TC")
                 {
                     MessageBox.Show("Tham gia thành công.");
-                    LoadingGroup();
                     tbTenNhom.Text = "";
                     tbMatKhau.Text = "";
                 }

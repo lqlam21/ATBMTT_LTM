@@ -30,17 +30,13 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbTenNhom = new System.Windows.Forms.Label();
-            this.clientsDataGridView = new System.Windows.Forms.DataGridView();
-            this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dc = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tbMatKhauGr = new System.Windows.Forms.TextBox();
             this.lbMatKhauGr = new System.Windows.Forms.Label();
             this.tbBg = new CSharpControl.Control.RJTextBox();
@@ -53,10 +49,14 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.guna2ToggleSwitch1 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.btGui = new Guna.UI2.WinForms.Guna2Button();
             this.DragAnimation = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.btInvaite = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.pnLichSu = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).BeginInit();
+            this.dc = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewsMember = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewsMember)).BeginInit();
             this.SuspendLayout();
             // 
             // lbTenNhom
@@ -69,108 +69,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.lbTenNhom.Size = new System.Drawing.Size(49, 18);
             this.lbTenNhom.TabIndex = 4;
             this.lbTenNhom.Text = "Nhóm";
-            // 
-            // clientsDataGridView
-            // 
-            this.clientsDataGridView.AllowUserToAddRows = false;
-            this.clientsDataGridView.AllowUserToDeleteRows = false;
-            this.clientsDataGridView.AllowUserToResizeColumns = false;
-            this.clientsDataGridView.AllowUserToResizeRows = false;
-            this.clientsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.clientsDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.clientsDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.clientsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.clientsDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.clientsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.clientsDataGridView.ColumnHeadersHeight = 24;
-            this.clientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.clientsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.identifier,
-            this.name,
-            this.dc});
-            this.clientsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.clientsDataGridView.EnableHeadersVisualStyles = false;
-            this.clientsDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(86)))));
-            this.clientsDataGridView.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.clientsDataGridView.Location = new System.Drawing.Point(591, 32);
-            this.clientsDataGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.clientsDataGridView.MultiSelect = false;
-            this.clientsDataGridView.Name = "clientsDataGridView";
-            this.clientsDataGridView.ReadOnly = true;
-            this.clientsDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.clientsDataGridView.RowHeadersVisible = false;
-            this.clientsDataGridView.RowHeadersWidth = 40;
-            this.clientsDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.clientsDataGridView.RowTemplate.Height = 24;
-            this.clientsDataGridView.RowTemplate.ReadOnly = true;
-            this.clientsDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.clientsDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.clientsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.clientsDataGridView.ShowCellErrors = false;
-            this.clientsDataGridView.ShowCellToolTips = false;
-            this.clientsDataGridView.ShowEditingIcon = false;
-            this.clientsDataGridView.ShowRowErrors = false;
-            this.clientsDataGridView.Size = new System.Drawing.Size(269, 482);
-            this.clientsDataGridView.TabIndex = 31;
-            this.clientsDataGridView.TabStop = false;
-            // 
-            // identifier
-            // 
-            this.identifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.identifier.DefaultCellStyle = dataGridViewCellStyle2;
-            this.identifier.HeaderText = "ID";
-            this.identifier.MaxInputLength = 20;
-            this.identifier.MinimumWidth = 20;
-            this.identifier.Name = "identifier";
-            this.identifier.ReadOnly = true;
-            this.identifier.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.identifier.Width = 70;
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.name.DefaultCellStyle = dataGridViewCellStyle3;
-            this.name.HeaderText = "Name";
-            this.name.MaxInputLength = 20;
-            this.name.MinimumWidth = 20;
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dc
-            // 
-            this.dc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dc.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dc.HeaderText = "Disconnect";
-            this.dc.MinimumWidth = 20;
-            this.dc.Name = "dc";
-            this.dc.ReadOnly = true;
-            this.dc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dc.Text = "Kick";
-            this.dc.UseColumnTextForButtonValue = true;
-            this.dc.Width = 80;
             // 
             // tbMatKhauGr
             // 
@@ -344,27 +242,28 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.DragAnimation.TransparentWhileDrag = true;
             this.DragAnimation.UseTransparentDrag = true;
             // 
-            // guna2Button1
+            // btInvaite
             // 
-            this.guna2Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button1.Animated = true;
-            this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.BorderRadius = 10;
-            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
-            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.DisabledState.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.HoverState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.Location = new System.Drawing.Point(372, 31);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(95, 39);
-            this.guna2Button1.TabIndex = 56;
-            this.guna2Button1.Text = "Mời ";
-            this.guna2Button1.UseTransparentBackground = true;
+            this.btInvaite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btInvaite.Animated = true;
+            this.btInvaite.BackColor = System.Drawing.Color.Transparent;
+            this.btInvaite.BorderRadius = 10;
+            this.btInvaite.CheckedState.Parent = this.btInvaite;
+            this.btInvaite.CustomImages.Parent = this.btInvaite;
+            this.btInvaite.DisabledState.Parent = this.btInvaite;
+            this.btInvaite.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
+            this.btInvaite.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btInvaite.ForeColor = System.Drawing.Color.White;
+            this.btInvaite.HoverState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btInvaite.HoverState.Parent = this.btInvaite;
+            this.btInvaite.Location = new System.Drawing.Point(372, 31);
+            this.btInvaite.Name = "btInvaite";
+            this.btInvaite.ShadowDecoration.Parent = this.btInvaite;
+            this.btInvaite.Size = new System.Drawing.Size(95, 39);
+            this.btInvaite.TabIndex = 56;
+            this.btInvaite.Text = "Mời ";
+            this.btInvaite.UseTransparentBackground = true;
+            this.btInvaite.Click += new System.EventHandler(this.btInvaite_Click);
             // 
             // guna2Button2
             // 
@@ -402,6 +301,109 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.pnLichSu.Size = new System.Drawing.Size(570, 400);
             this.pnLichSu.TabIndex = 2;
             // 
+            // dc
+            // 
+            this.dc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dc.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dc.HeaderText = "Disconnect";
+            this.dc.MinimumWidth = 20;
+            this.dc.Name = "dc";
+            this.dc.ReadOnly = true;
+            this.dc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dc.Text = "Kick";
+            this.dc.UseColumnTextForButtonValue = true;
+            this.dc.Width = 80;
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.name.DefaultCellStyle = dataGridViewCellStyle9;
+            this.name.HeaderText = "Name";
+            this.name.MaxInputLength = 20;
+            this.name.MinimumWidth = 20;
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // identifier
+            // 
+            this.identifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.identifier.DefaultCellStyle = dataGridViewCellStyle8;
+            this.identifier.HeaderText = "ID";
+            this.identifier.MaxInputLength = 20;
+            this.identifier.MinimumWidth = 20;
+            this.identifier.Name = "identifier";
+            this.identifier.ReadOnly = true;
+            this.identifier.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.identifier.Width = 70;
+            // 
+            // DataGridViewsMember
+            // 
+            this.DataGridViewsMember.AllowUserToAddRows = false;
+            this.DataGridViewsMember.AllowUserToDeleteRows = false;
+            this.DataGridViewsMember.AllowUserToResizeColumns = false;
+            this.DataGridViewsMember.AllowUserToResizeRows = false;
+            this.DataGridViewsMember.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DataGridViewsMember.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.DataGridViewsMember.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DataGridViewsMember.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.DataGridViewsMember.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewsMember.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.DataGridViewsMember.ColumnHeadersHeight = 24;
+            this.DataGridViewsMember.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataGridViewsMember.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.identifier,
+            this.name,
+            this.dc});
+            this.DataGridViewsMember.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DataGridViewsMember.EnableHeadersVisualStyles = false;
+            this.DataGridViewsMember.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(86)))));
+            this.DataGridViewsMember.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.DataGridViewsMember.Location = new System.Drawing.Point(591, 32);
+            this.DataGridViewsMember.Margin = new System.Windows.Forms.Padding(4);
+            this.DataGridViewsMember.MultiSelect = false;
+            this.DataGridViewsMember.Name = "DataGridViewsMember";
+            this.DataGridViewsMember.ReadOnly = true;
+            this.DataGridViewsMember.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.DataGridViewsMember.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.DataGridViewsMember.RowHeadersVisible = false;
+            this.DataGridViewsMember.RowHeadersWidth = 40;
+            this.DataGridViewsMember.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.DataGridViewsMember.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DataGridViewsMember.RowTemplate.Height = 24;
+            this.DataGridViewsMember.RowTemplate.ReadOnly = true;
+            this.DataGridViewsMember.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewsMember.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DataGridViewsMember.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewsMember.ShowCellErrors = false;
+            this.DataGridViewsMember.ShowCellToolTips = false;
+            this.DataGridViewsMember.ShowEditingIcon = false;
+            this.DataGridViewsMember.ShowRowErrors = false;
+            this.DataGridViewsMember.Size = new System.Drawing.Size(269, 482);
+            this.DataGridViewsMember.TabIndex = 31;
+            this.DataGridViewsMember.TabStop = false;
+            this.DataGridViewsMember.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewsMember_CellClick);
+            // 
             // FormAdGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,7 +413,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.ClientSize = new System.Drawing.Size(868, 524);
             this.Controls.Add(this.pnLichSu);
             this.Controls.Add(this.guna2Button2);
-            this.Controls.Add(this.guna2Button1);
+            this.Controls.Add(this.btInvaite);
             this.Controls.Add(this.btGui);
             this.Controls.Add(this.guna2ToggleSwitch1);
             this.Controls.Add(this.lbStt);
@@ -421,7 +423,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tbBg);
             this.Controls.Add(this.tbMatKhauGr);
-            this.Controls.Add(this.clientsDataGridView);
+            this.Controls.Add(this.DataGridViewsMember);
             this.Controls.Add(this.lbMatKhauGr);
             this.Controls.Add(this.lbTenNhom);
             this.MinimumSize = new System.Drawing.Size(828, 511);
@@ -429,7 +431,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.Text = "FormAdGroup";
             this.Load += new System.EventHandler(this.FormAdGroup_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormAdGroup_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewsMember)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,10 +439,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
 
         #endregion
         private System.Windows.Forms.Label lbTenNhom;
-        private System.Windows.Forms.DataGridView clientsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewButtonColumn dc;
         private System.Windows.Forms.TextBox tbMatKhauGr;
         private System.Windows.Forms.Label lbMatKhauGr;
         private CSharpControl.Control.RJTextBox tbBg;
@@ -453,8 +451,12 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private Guna.UI2.WinForms.Guna2ToggleSwitch guna2ToggleSwitch1;
         private Guna.UI2.WinForms.Guna2Button btGui;
         private Guna.UI2.WinForms.Guna2DragControl DragAnimation;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btInvaite;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private System.Windows.Forms.Panel pnLichSu;
+        private System.Windows.Forms.DataGridView DataGridViewsMember;
+        private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewButtonColumn dc;
     }
 }

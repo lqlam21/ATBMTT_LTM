@@ -26,3 +26,10 @@ D:\C#\BTL\Sever\obj\Debug\Sever.pdb
 D:\C#\BTL\Sever\bin\Debug\Sever.exe.config
 D:\C#\BTL\Sever\bin\Debug\Sever.exe
 D:\C#\BTL\Sever\bin\Debug\Sever.pdb
+D:\BTL_ATBMTT\BTL\Sever\bin\Debug\Sever.exe.config
+D:\BTL_ATBMTT\BTL\Sever\bin\Debug\Sever.exe
+D:\BTL_ATBMTT\BTL\Sever\bin\Debug\Sever.pdb
+D:\BTL_ATBMTT\BTL\Sever\obj\Debug\Server.csprojAssemblyReference.cache
+D:\BTL_ATBMTT\BTL\Sever\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\BTL_ATBMTT\BTL\Sever\obj\Debug\Sever.exe
+D:\BTL_ATBMTT\BTL\Sever\obj\Debug\Sever.pdb

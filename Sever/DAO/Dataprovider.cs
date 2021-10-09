@@ -4,8 +4,6 @@ using System.Data.SqlClient;
 
 namespace Server.DAO
 {
-
-
     public class DataProvider
     {
         //Tạo Singleton pattern
