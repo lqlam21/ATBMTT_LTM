@@ -11,7 +11,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
     public partial class FormChat : Form
     {
         #region Field
-        string username,sTenNhom,sChucVu,key;
+        string username,sTenNhom,key;
         int soluongGroup = 0;
         List<string> lsGroup = new List<string>();
         #endregion
@@ -105,7 +105,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 //Yêu cầu xóa: [DelGr] ~ tên nhóm
                 string yeucau = "[DelGr]~" + sTenNhom;
                 string ketqua = Result.Instance.Request(yeucau);
-                LoadingGroup();
             }
             else
             {
@@ -117,7 +116,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
             //Yêu cầu rời: [OutGr] ~ tên nhóm
             string yeucau = "[OutGr]~" + sTenNhom + "~" + username;
             string ketqua = Result.Instance.Request(yeucau);
-            LoadingGroup();
         }
         private void Btn_MouseClick(object sender, MouseEventArgs e)
         {
@@ -135,13 +133,12 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 else
                 {
                     string keynhom = ((sender as Button).Tag as string).Split('~')[3];
-                    FormMemberGroup groupMem = new FormMemberGroup(username, namegr, keynhom);
+                    FormMemberGroup groupMem = new FormMemberGroup(username, namegr);
                     groupMem.Show();
                 }
             }
             else if (e.Button == MouseButtons.Right) //Chuột phải là xóa hoặc rời nhóm
             {
-                sChucVu = chucvu;
                 sTenNhom = namegr;
             }
         }//Mở nhóm
@@ -185,11 +182,16 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 MessageBox.Show("Bạn không được để trống tên và mật khẩu nhóm.");
                 tbTenNhom.Focus();
             }
+            else if (groupname.Contains("~") || groupname.Contains("^"))
+            {
+                MessageBox.Show("Tên nhóm chứa ký tự cấm sử dụng");
+                tbTenNhom.Focus();
+            }
             else
             {
                 string yeucau = "[TaoNhom]~" + username +
                     "~" + groupname + 
-                    "~" + grouppass;
+                    "~" + grouppass.MaHoa();
                 string ketqua = Result.Instance.Request(yeucau);
                 if (ketqua == "DTT")
                 {
@@ -204,7 +206,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     MessageBox.Show("Tạo thành công.");
                     tbTenNhom.Text = "";
                     tbMatKhau.Text = "";
-                    //LoadingGroup();
                 }
                 else
                 {
@@ -217,7 +218,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             //Yc = [TimNhom] ~ username ~ tên nhóm ~ mật khậu nhóm
             string groupname = tbTenNhom.Text.Trim();
-            string grouppass = tbMatKhau.Text.Trim();
+            string grouppass = tbMatKhau.Text.Trim().MaHoa();
             if (groupname == "" || grouppass == "")
             {
                 MessageBox.Show("Bạn không được để trống tên và mật khẩu nhóm.");

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LeQuyLam_InfomationSecurity
@@ -61,7 +60,7 @@ namespace LeQuyLam_InfomationSecurity
         {
             sUsername = txbUserName.Text;
             //Cấu trúc [DangNhap]~ UserNam ~ Password;
-            String yeuCau = "[DangNhap]~" + txbUserName.Text + "~" + txbPassword.Text;
+            String yeuCau = "[DangNhap]~" + txbUserName.Text + "~" + txbPassword.Text.MaHoa();
             String ketQua = Result.Instance.Request(yeuCau);
             if (String.IsNullOrEmpty(ketQua))
             {
@@ -69,14 +68,14 @@ namespace LeQuyLam_InfomationSecurity
             }
             else if (!ketQua.Equals("[NULL]"))
             {
-                 sName = ketQua.Split('~')[0];
+                 sName = (ketQua.Split('~')[0]).GiaiMa();
                  sEmail = ketQua.Split('~')[1];
                  nType = int.Parse(ketQua.Split('~')[2]);
                  sKey = ketQua.Split('~')[3];
 
                 FormMainMenu fTt = new FormMainMenu(sUsername, sKey, nType);
                 fTt.lblTitle.Text = "Chào " + sName;
-                if (nType == 0) //Tài khoản admin
+                if (nType != 2) //Tài k bật 2 lớp
                 {
                     this.Hide();
                     fTt.ShowDialog();
@@ -85,23 +84,15 @@ namespace LeQuyLam_InfomationSecurity
                     txbUserName.Text = "";
                     txbUserName.Focus();
                 }
-                else if (nType == 2)//Tài khoản bật bảo vệ 2 lớp
+                else//Tài khoản bật bảo vệ 2 lớp
                 {
                     SendCode();
                     lbDem.Text = "";
                     lbTimeLate.Text = "";
                     lbEmail.Text = sEmail[0] + "********" + sEmail[sEmail.Length - 11] + "@gmail.com";
                     pnXacMinh.Show();
+                    tbCode.Focus();
                     timeCountDownCode.Start();
-                }
-                else
-                {
-                    this.Hide();
-                    fTt.ShowDialog();
-                    this.Show();
-                    txbPassword.Text = "";
-                    txbUserName.Text = "";
-                    txbUserName.Focus();
                 }
             }
             else
@@ -165,6 +156,8 @@ namespace LeQuyLam_InfomationSecurity
 
         private void txbUserName_GotFocus(object sender, EventArgs e)
         {
+            if (txbPassword.Text.Length > 0)
+                lbstt2.Visible = false;
             lbstt1.Visible = false;
         }
 

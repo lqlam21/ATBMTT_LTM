@@ -115,7 +115,7 @@ namespace LeQuyLam_InfomationSecurity
             this.tbCode.MaxLength = 5;
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(174, 20);
-            this.tbCode.TabIndex = 0;
+            this.tbCode.TabIndex = 5;
             this.tbCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCode_KeyDown);
             // 
             // pictureBox1
@@ -295,11 +295,11 @@ namespace LeQuyLam_InfomationSecurity
             this.tbDisplayName.BackColor = System.Drawing.Color.White;
             this.tbDisplayName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbDisplayName.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.tbDisplayName.Location = new System.Drawing.Point(141, 63);
+            this.tbDisplayName.Location = new System.Drawing.Point(141, 64);
             this.tbDisplayName.MaxLength = 20;
             this.tbDisplayName.Multiline = true;
             this.tbDisplayName.Name = "tbDisplayName";
-            this.tbDisplayName.Size = new System.Drawing.Size(155, 25);
+            this.tbDisplayName.Size = new System.Drawing.Size(155, 21);
             this.tbDisplayName.TabIndex = 1;
             this.tbDisplayName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbDisplayName_KeyDown);
             // 
@@ -326,11 +326,11 @@ namespace LeQuyLam_InfomationSecurity
             this.tbID.BackColor = System.Drawing.Color.White;
             this.tbID.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbID.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.tbID.Location = new System.Drawing.Point(141, 20);
+            this.tbID.Location = new System.Drawing.Point(141, 22);
             this.tbID.MaxLength = 50;
             this.tbID.Multiline = true;
             this.tbID.Name = "tbID";
-            this.tbID.Size = new System.Drawing.Size(155, 25);
+            this.tbID.Size = new System.Drawing.Size(155, 21);
             this.tbID.TabIndex = 0;
             this.tbID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbID_KeyDown);
             // 

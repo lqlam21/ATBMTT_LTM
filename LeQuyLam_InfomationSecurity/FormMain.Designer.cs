@@ -179,7 +179,7 @@ namespace LeQuyLam_InfomationSecurity
             this.tbCode.MaxLength = 5;
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(172, 20);
-            this.tbCode.TabIndex = 2;
+            this.tbCode.TabIndex = 5;
             this.tbCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCode_KeyDown);
             // 
             // btSendAgain

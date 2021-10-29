@@ -214,6 +214,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             label7.Hide();
             CheckStatus();
             lbTime.Text = DateTime.Now.ToString("dddd dd MMMM yyyy \n\r               HH:mm:ss");
+            lbTime.TextAlign = ContentAlignment.MiddleCenter;
             tbKey.ReadOnly = true;
             tbDisplayname.ReadOnly = true;
             active3 = true; /* Không hiểu tại sao đã khởi tạo active3  = true rồi nhưng vẫn
@@ -239,12 +240,12 @@ namespace LeQuyLam_InfomationSecurity.Forms
             key = tbKey.Text;
             displayname = tbDisplayname.Text;
             //Kiểm tra tbKey lớn hơn 6 ký tự mới được phép sửa
-            if (tbKey.TextLength > 5)
+            if (tbKey.TextLength > 5 && !tbKey.Text.Contains("^"))
                 btSua.Enabled = true;
             else
                 btSua.Enabled = false;
 
-            if (tbDisplayname.TextLength > 1)
+            if (tbDisplayname.TextLength > 1 && !tbDisplayname.Text.Contains("~") && !tbDisplayname.Text.Contains("^"))
                 btEditDisplayname.Enabled = true;
             else
                 btEditDisplayname.Enabled = false;
@@ -294,7 +295,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             string password = txbPassWord.Text;//Mã hóa lại password
             //Bảo vệ 2 lớp: [UpdateSecondSecurity]~username ~password ~type
             string yeuCau = "[UpdateSecondSecurity]~" + username + "~"
-                + password + "~" + type;
+                + password.MaHoa() + "~" + type;
             string ketQua = Result.Instance.Request(yeuCau);
             if (ketQua == "T1")
             {
@@ -327,7 +328,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
                                 //Đổi pass: [DoiPass]~ username ~ password ~ pass_new
             string old_pass = tbOldPass.Text;
             string new_pas = tbNewPass.Text;
-            string yeuCau = "[DoiPass]~" + username + "~" + old_pass + "~" + new_pas;
+            string yeuCau = "[DoiPass]~" + username + "~" + old_pass.MaHoa() + "~" + new_pas.MaHoa();
             if (tbNewPass.Text == tbNewPass2.Text&&tbNewPass.TextLength>0)
             {
                 string ketQua = Result.Instance.Request(yeuCau);

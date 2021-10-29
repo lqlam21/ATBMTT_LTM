@@ -37,9 +37,21 @@ namespace LeQuyLam_InfomationSecurity
             //Cấu trúc kiểm tra tài khoản: [KiemTraTaiKhoan] ~ username
             string yeuCau = "[KiemTraTaiKhoan]~" + tbID.Text;
             string ketQua = Result.Instance.Request(yeuCau);
-            if (tbDisplayName.Text.Trim() == ""||tbID.Text.Trim()==""||tbPassword.Text.Trim()=="")
+            if (tbDisplayName.Text.Trim() == "" || tbID.Text.Trim() == "" || tbPassword.Text.Trim() == "")
             {
                 MessageBox.Show("Không trống thông tin!");
+            }
+            else if (tbID.Text.Contains("~") || tbID.Text.Contains("^"))
+            {
+                MessageBox.Show("Tên đăng nhập không được phép sử dụng ký tự đặc biệt");
+                tbID.Text = "";
+                tbID.Focus();
+            }
+            else if (tbDisplayName.Text.Contains("~") || tbDisplayName.Text.Contains("^"))
+            {
+                MessageBox.Show("Tên hiển thị chứa ký tự cấm");
+                tbDisplayName.Text = "";
+                tbDisplayName.Focus();
             }
             else if (tbPassword.Text != tbNhapLaiPass.Text)
             {
@@ -65,6 +77,7 @@ namespace LeQuyLam_InfomationSecurity
                 SendCode();
                 // gui email
                 pnNhapCode.Show();
+                tbCode.Focus();
                 timeCountdownCode.Start();
             }
         }
@@ -87,7 +100,7 @@ namespace LeQuyLam_InfomationSecurity
                 string sEmail = tbEmail.Text.Trim();
                 string sUsername = tbID.Text.Trim();
                 //Mã hóa trước khi gửi cho sever
-                string yeuCau = "[DangKy]~" + tbDisplayName.Text + "~" + sKey + "~" + sPassword + "~" + sEmail + "~" + sUsername;
+                string yeuCau = "[DangKy]~" + tbDisplayName.Text + "~" + sKey + "~" + sPassword.MaHoa() + "~" + sEmail.MaHoa()+ "~" + sUsername;
                 string ketQua = Result.Instance.Request(yeuCau);
                 if (String.IsNullOrEmpty(ketQua))
                 {

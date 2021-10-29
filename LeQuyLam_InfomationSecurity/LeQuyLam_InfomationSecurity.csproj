@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CHMH\MD5Helper.cs" />
     <Compile Include="FormDangKy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +108,12 @@
     <Compile Include="Forms\FormChatRieng.Designer.cs">
       <DependentUpon>FormChatRieng.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormsGroupChat\fInvaite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsGroupChat\fInvaite.Designer.cs">
+      <DependentUpon>fInvaite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormsGroupChat\FormAdGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormChatRieng.resx">
       <DependentUpon>FormChatRieng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsGroupChat\fInvaite.resx">
+      <DependentUpon>fInvaite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormsGroupChat\FormAdGroup.resx">
       <DependentUpon>FormAdGroup.cs</DependentUpon>

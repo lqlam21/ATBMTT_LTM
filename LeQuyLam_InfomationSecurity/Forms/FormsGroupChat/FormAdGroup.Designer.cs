@@ -30,12 +30,12 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbTenNhom = new System.Windows.Forms.Label();
             this.tbMatKhauGr = new System.Windows.Forms.TextBox();
             this.lbMatKhauGr = new System.Windows.Forms.Label();
@@ -46,16 +46,17 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.timerLoading = new System.Windows.Forms.Timer(this.components);
             this.tbNoiDung = new System.Windows.Forms.TextBox();
             this.lbStt = new System.Windows.Forms.Label();
-            this.guna2ToggleSwitch1 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.cbHideOrShowPass = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.btGui = new Guna.UI2.WinForms.Guna2Button();
             this.DragAnimation = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.btInvaite = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.btChangePassGr = new Guna.UI2.WinForms.Guna2Button();
             this.pnLichSu = new System.Windows.Forms.Panel();
             this.dc = new System.Windows.Forms.DataGridViewButtonColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewsMember = new System.Windows.Forms.DataGridView();
+            this.toolTipChangePass = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewsMember)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,9 +73,10 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             // 
             // tbMatKhauGr
             // 
-            this.tbMatKhauGr.Location = new System.Drawing.Point(121, 43);
+            this.tbMatKhauGr.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMatKhauGr.Location = new System.Drawing.Point(121, 40);
             this.tbMatKhauGr.Name = "tbMatKhauGr";
-            this.tbMatKhauGr.Size = new System.Drawing.Size(100, 20);
+            this.tbMatKhauGr.Size = new System.Drawing.Size(100, 23);
             this.tbMatKhauGr.TabIndex = 33;
             // 
             // lbMatKhauGr
@@ -189,26 +191,27 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.lbStt.Text = "Nhập tin nhắn...";
             this.lbStt.Click += new System.EventHandler(this.lbStt_Click);
             // 
-            // guna2ToggleSwitch1
+            // cbHideOrShowPass
             // 
-            this.guna2ToggleSwitch1.Animated = true;
-            this.guna2ToggleSwitch1.Checked = true;
-            this.guna2ToggleSwitch1.CheckedState.BorderColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.guna2ToggleSwitch1.CheckedState.InnerBorderColor = System.Drawing.Color.Navy;
-            this.guna2ToggleSwitch1.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch1.CheckedState.Parent = this.guna2ToggleSwitch1;
-            this.guna2ToggleSwitch1.Location = new System.Drawing.Point(227, 43);
-            this.guna2ToggleSwitch1.Name = "guna2ToggleSwitch1";
-            this.guna2ToggleSwitch1.ShadowDecoration.Parent = this.guna2ToggleSwitch1;
-            this.guna2ToggleSwitch1.Size = new System.Drawing.Size(35, 20);
-            this.guna2ToggleSwitch1.TabIndex = 54;
-            this.guna2ToggleSwitch1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(153)))), ((int)(((byte)(149)))));
-            this.guna2ToggleSwitch1.UncheckedState.BorderThickness = 2;
-            this.guna2ToggleSwitch1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(9)))), ((int)(((byte)(43)))));
-            this.guna2ToggleSwitch1.UncheckedState.InnerBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(153)))), ((int)(((byte)(149)))));
-            this.guna2ToggleSwitch1.UncheckedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(153)))), ((int)(((byte)(149)))));
-            this.guna2ToggleSwitch1.UncheckedState.Parent = this.guna2ToggleSwitch1;
+            this.cbHideOrShowPass.Animated = true;
+            this.cbHideOrShowPass.Checked = true;
+            this.cbHideOrShowPass.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.cbHideOrShowPass.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.cbHideOrShowPass.CheckedState.InnerBorderColor = System.Drawing.Color.Navy;
+            this.cbHideOrShowPass.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.cbHideOrShowPass.CheckedState.Parent = this.cbHideOrShowPass;
+            this.cbHideOrShowPass.Location = new System.Drawing.Point(227, 43);
+            this.cbHideOrShowPass.Name = "cbHideOrShowPass";
+            this.cbHideOrShowPass.ShadowDecoration.Parent = this.cbHideOrShowPass;
+            this.cbHideOrShowPass.Size = new System.Drawing.Size(35, 20);
+            this.cbHideOrShowPass.TabIndex = 54;
+            this.cbHideOrShowPass.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(153)))), ((int)(((byte)(149)))));
+            this.cbHideOrShowPass.UncheckedState.BorderThickness = 2;
+            this.cbHideOrShowPass.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(9)))), ((int)(((byte)(43)))));
+            this.cbHideOrShowPass.UncheckedState.InnerBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(153)))), ((int)(((byte)(149)))));
+            this.cbHideOrShowPass.UncheckedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(153)))), ((int)(((byte)(149)))));
+            this.cbHideOrShowPass.UncheckedState.Parent = this.cbHideOrShowPass;
+            this.cbHideOrShowPass.CheckedChanged += new System.EventHandler(this.cbHideOrShowPass_CheckedChanged);
             // 
             // btGui
             // 
@@ -251,7 +254,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btInvaite.CheckedState.Parent = this.btInvaite;
             this.btInvaite.CustomImages.Parent = this.btInvaite;
             this.btInvaite.DisabledState.Parent = this.btInvaite;
-            this.btInvaite.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
+            this.btInvaite.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(86)))));
             this.btInvaite.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btInvaite.ForeColor = System.Drawing.Color.White;
             this.btInvaite.HoverState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -265,29 +268,30 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btInvaite.UseTransparentBackground = true;
             this.btInvaite.Click += new System.EventHandler(this.btInvaite_Click);
             // 
-            // guna2Button2
+            // btChangePassGr
             // 
-            this.guna2Button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button2.Animated = true;
-            this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
-            this.guna2Button2.BorderRadius = 10;
-            this.guna2Button2.BorderThickness = 2;
-            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
-            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
-            this.guna2Button2.DisabledState.Parent = this.guna2Button2;
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.HoverState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.Location = new System.Drawing.Point(486, 30);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
-            this.guna2Button2.Size = new System.Drawing.Size(98, 41);
-            this.guna2Button2.TabIndex = 57;
-            this.guna2Button2.Text = "Đổi pass";
-            this.guna2Button2.UseTransparentBackground = true;
+            this.btChangePassGr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btChangePassGr.Animated = true;
+            this.btChangePassGr.BackColor = System.Drawing.Color.Transparent;
+            this.btChangePassGr.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(86)))));
+            this.btChangePassGr.BorderRadius = 10;
+            this.btChangePassGr.BorderThickness = 2;
+            this.btChangePassGr.CheckedState.Parent = this.btChangePassGr;
+            this.btChangePassGr.CustomImages.Parent = this.btChangePassGr;
+            this.btChangePassGr.DisabledState.Parent = this.btChangePassGr;
+            this.btChangePassGr.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.btChangePassGr.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btChangePassGr.ForeColor = System.Drawing.Color.White;
+            this.btChangePassGr.HoverState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btChangePassGr.HoverState.Parent = this.btChangePassGr;
+            this.btChangePassGr.Location = new System.Drawing.Point(486, 30);
+            this.btChangePassGr.Name = "btChangePassGr";
+            this.btChangePassGr.ShadowDecoration.Parent = this.btChangePassGr;
+            this.btChangePassGr.Size = new System.Drawing.Size(98, 41);
+            this.btChangePassGr.TabIndex = 57;
+            this.btChangePassGr.Text = "Đổi pass";
+            this.btChangePassGr.UseTransparentBackground = true;
+            this.btChangePassGr.Click += new System.EventHandler(this.btChangePassGr_Click);
             // 
             // pnLichSu
             // 
@@ -304,9 +308,9 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             // dc
             // 
             this.dc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dc.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dc.DefaultCellStyle = dataGridViewCellStyle4;
             this.dc.HeaderText = "Disconnect";
             this.dc.MinimumWidth = 20;
             this.dc.Name = "dc";
@@ -319,8 +323,8 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             // name
             // 
             this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.name.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.name.DefaultCellStyle = dataGridViewCellStyle3;
             this.name.HeaderText = "Name";
             this.name.MaxInputLength = 20;
             this.name.MinimumWidth = 20;
@@ -331,8 +335,8 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             // identifier
             // 
             this.identifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.identifier.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.identifier.DefaultCellStyle = dataGridViewCellStyle2;
             this.identifier.HeaderText = "ID";
             this.identifier.MaxInputLength = 20;
             this.identifier.MinimumWidth = 20;
@@ -353,14 +357,14 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.DataGridViewsMember.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridViewsMember.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.DataGridViewsMember.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewsMember.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewsMember.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridViewsMember.ColumnHeadersHeight = 24;
             this.DataGridViewsMember.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridViewsMember.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -377,19 +381,19 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.DataGridViewsMember.Name = "DataGridViewsMember";
             this.DataGridViewsMember.ReadOnly = true;
             this.DataGridViewsMember.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.DataGridViewsMember.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.DataGridViewsMember.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridViewsMember.RowHeadersVisible = false;
             this.DataGridViewsMember.RowHeadersWidth = 40;
             this.DataGridViewsMember.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.DataGridViewsMember.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.DataGridViewsMember.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridViewsMember.RowTemplate.Height = 24;
             this.DataGridViewsMember.RowTemplate.ReadOnly = true;
             this.DataGridViewsMember.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -404,6 +408,16 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.DataGridViewsMember.TabStop = false;
             this.DataGridViewsMember.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewsMember_CellClick);
             // 
+            // toolTipChangePass
+            // 
+            this.toolTipChangePass.AutomaticDelay = 200;
+            this.toolTipChangePass.AutoPopDelay = 9000;
+            this.toolTipChangePass.InitialDelay = 200;
+            this.toolTipChangePass.ReshowDelay = 40;
+            this.toolTipChangePass.ShowAlways = true;
+            this.toolTipChangePass.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipChangePass.ToolTipTitle = "Hướng dẫn";
+            // 
             // FormAdGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,10 +426,10 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(868, 524);
             this.Controls.Add(this.pnLichSu);
-            this.Controls.Add(this.guna2Button2);
+            this.Controls.Add(this.btChangePassGr);
             this.Controls.Add(this.btInvaite);
             this.Controls.Add(this.btGui);
-            this.Controls.Add(this.guna2ToggleSwitch1);
+            this.Controls.Add(this.cbHideOrShowPass);
             this.Controls.Add(this.lbStt);
             this.Controls.Add(this.tbNoiDung);
             this.Controls.Add(this.btnMinisize);
@@ -448,15 +462,16 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private System.Windows.Forms.Timer timerLoading;
         private System.Windows.Forms.TextBox tbNoiDung;
         private System.Windows.Forms.Label lbStt;
-        private Guna.UI2.WinForms.Guna2ToggleSwitch guna2ToggleSwitch1;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch cbHideOrShowPass;
         private Guna.UI2.WinForms.Guna2Button btGui;
         private Guna.UI2.WinForms.Guna2DragControl DragAnimation;
         private Guna.UI2.WinForms.Guna2Button btInvaite;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btChangePassGr;
         private System.Windows.Forms.Panel pnLichSu;
         private System.Windows.Forms.DataGridView DataGridViewsMember;
         private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewButtonColumn dc;
+        private System.Windows.Forms.ToolTip toolTipChangePass;
     }
 }

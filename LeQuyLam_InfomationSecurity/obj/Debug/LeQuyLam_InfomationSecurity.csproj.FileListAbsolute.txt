@@ -180,3 +180,4 @@ D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecur
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.csproj.CopyComplete
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
+D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.fInvaite.resources

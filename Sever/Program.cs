@@ -2,9 +2,6 @@
 using Server.DTO;
 using Server.env;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -38,7 +35,7 @@ namespace Server
                     //Đăng nhập: [DangNhap] ~ usernam ~ password
                     User us = new User();
                     String username = noiDung.Split('~')[1];
-                    String password = noiDung.Split('~')[2];
+                    String password = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[2]);
                     us.Username = username;
                     us.Password = password;
                     //Truy vấn
@@ -47,7 +44,7 @@ namespace Server
                     {
                         User thongTinUser = InfoDAO.Instance.LoadInfo(us.Username);
                         thongTinUser.GiaiMaEmail(thongTinUser.Key);
-                        traLoi = thongTinUser.Namedisplay + "~" + thongTinUser.Email + "~" + thongTinUser.Type 
+                        traLoi = MD5Helper.Instance.MaHoa(thongTinUser.Namedisplay) + "~" + thongTinUser.Email + "~" + thongTinUser.Type 
                             + "~" + thongTinUser.Key;
                         traLoi = traLoi.Substring(0, traLoi.Length);
                         Console.WriteLine( username + "- ket noi");
@@ -64,8 +61,8 @@ namespace Server
                     //Đăng ký: [DangKy] ~ DisPlayName ~ Key ~ Pass ~ Email ~ Username
                     string displayname = noiDung.Split('~')[1];
                     string key = noiDung.Split('~')[2];
-                    string password = noiDung.Split('~')[3];
-                    string email = noiDung.Split('~')[4];
+                    string password = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[3]);
+                    string email = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[4]);
                     string username = noiDung.Split('~')[5];
                     User thongTinUser = new User(displayname, email, username, password, 1, key);
                     thongTinUser.MaHoaEmail(thongTinUser.Key);
@@ -90,8 +87,8 @@ namespace Server
                     //Đổi pass: [DoiPass]~ username ~ password ~ pass_new
                     User us = new User();
                     us.Username = noiDung.Split('~')[1];
-                    us.Password = noiDung.Split('~')[2];
-                    us.Passnew = noiDung.Split('~')[3];
+                    us.Password = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[2]);
+                    us.Passnew = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[3]);
 
                     byte[] traLoi;
                     if (AccountDAO.Instance.Login(us.Username, us.Password))
@@ -111,7 +108,7 @@ namespace Server
                     //Update Bảo vệ 2 lớp: [UpdateSecondSecurity]~ username ~ password ~ type
                     User us = new User();
                     us.Username = noiDung.Split('~')[1];
-                    us.Password = noiDung.Split('~')[2];
+                    us.Password = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[2]);
                     string type = noiDung.Split('~')[3];
                     byte[] traLoi = Encoding.UTF8.GetBytes("OK");
 
@@ -206,7 +203,7 @@ namespace Server
                     GroupChat gc = new GroupChat();
                     gc.Username = noiDung.Split('~')[1];
                     gc.TenNhom = noiDung.Split('~')[2];
-                    gc.MatKhau = noiDung.Split('~')[3];
+                    gc.MatKhau = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[3]);
                     gc.MaHoaPassGr(GroupChatDAO.Instance.TakeKey(gc.Username));
                     //Kiểm tra tên nhóm đã tồn tại hay chưa
                     bool check = GroupChatDAO.Instance.KiemTraGr(gc.TenNhom);
@@ -239,7 +236,7 @@ namespace Server
                     GroupChat gc = new GroupChat();
                     gc.Username = noiDung.Split('~')[1];
                     gc.TenNhom = noiDung.Split('~')[2];
-                    gc.MatKhau = noiDung.Split('~')[3];
+                    gc.MatKhau = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[3]);
                     gc.MaHoaPassGr(GroupChatDAO.Instance.TakeKeyGroup(gc.TenNhom));
                     //Kiểm tra tên nhóm có tồn tại hay không
                     bool check = GroupChatDAO.Instance.LoginGr(gc.TenNhom, gc.MatKhau);
@@ -283,7 +280,7 @@ namespace Server
                     //Yc Gửi tin nhắn = [SendMTGroup] ~ username ~ groupname ~ noidung
                     string username = noiDung.Split('~')[1];
                     string tennhom = noiDung.Split('~')[2];
-                    string noidung = noiDung.Split('~')[3];
+                    string noidung = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[3]);
                     string traLoi = GroupChatDAO.Instance.SendToGr(username, tennhom, noidung);
                     skXL.Send(Encoding.UTF8.GetBytes(traLoi));
                 }//Gửi tin nhắn vào nhóm
@@ -333,7 +330,7 @@ namespace Server
                     bool check2 = AccountDAO.Instance.KiemTraTK(gc.Username);
                     if (check2)
                     {
-                        if (!check) // Chưa từng tham gia nhóm
+                        if (!check) // Chưa từng tham gia nhóm và không ở trong nhóm
                         {
                             GroupChatDAO.Instance.JoinGr(gc.Username, gc.TenNhom);
                         }
@@ -381,6 +378,16 @@ namespace Server
                     }
                     skXL.Send(Encoding.UTF8.GetBytes(traLoi));
                 }//Update nhóm liên tục
+                else if (noiDung.StartsWith("[DellMess]"))
+                {
+                    //YC: [ThuHoiMess] ~ id ~ count
+                    GroupChatDAO.Instance.DelMess(noiDung.Split('~')[1], int.Parse(noiDung.Split('~')[2]));
+                    skXL.Send(Encoding.UTF8.GetBytes("DONE"));
+                }
+                else if (noiDung.StartsWith("[EditPassGr]")){
+                    //Yc = [EditPassGr] ~ Ten Nhom
+                    string grname = noiDung.Split('~')[1];
+                }
                 // Đóng kết nối
                 skXL.Close();
                 skXL.Dispose();
