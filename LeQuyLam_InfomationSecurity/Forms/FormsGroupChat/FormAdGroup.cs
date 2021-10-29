@@ -379,12 +379,13 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             int y_max = pnLichSu.Height + 5;
 
             if (y + btn.Size.Height > y_max - 5 && usg == usn)
+            //if (y > y_max - 5 && usg == usn)
             {
                 btn.CustomizableEdges.BottomRight = false;
                 btn.Location = new Point(x - 15, y_max);
                 btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             }
-            else if (y > y_max - 5 && usg != usn)
+            else if (y + btn.Size.Height > y_max - 5 && usg != usn)
             {
                 btn.CustomizableEdges.BottomLeft = false;
                 btn.Location = new Point(5, y_max);

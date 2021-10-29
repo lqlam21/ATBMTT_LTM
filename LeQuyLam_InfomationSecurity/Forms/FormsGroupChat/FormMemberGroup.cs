@@ -325,7 +325,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 btn.Location = new Point(x - 15, y_max);
                 btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             }
-            else if (y > y_max - 5 && usg != usn)
+            else if (y + btn.Size.Height > y_max - 5 && usg != usn)
             {
                 int y_lb = y_max;//Tọa độ Y lable
                 btn.CustomizableEdges.BottomLeft = false;
