@@ -36,6 +36,12 @@ namespace LeQuyLam_InfomationSecurity.Forms
             }
             label4.ForeColor = ThemeColor.SecondaryColor;
             this.BackColor = ThemeColor.ChangeColorBrightness(ThemeColor.PrimaryColor,+ 0.8);
+            ContextMenuStrip cms = new ContextMenuStrip();
+            cms.Items.Add("Tạo nhóm");
+            cms.Items[0].Click += btTaoNhom_Click;
+            cms.Items.Add("Tìm nhóm");
+            cms.Items[1].Click += btSearch_Click;
+            flowLayoutNhomChat.ContextMenuStrip = cms;
         }
         private void LoadingGroup()
         {

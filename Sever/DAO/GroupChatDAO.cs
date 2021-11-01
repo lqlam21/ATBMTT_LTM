@@ -198,7 +198,7 @@ namespace Server.DAO
             string query3 = "SELECT MAX(id) FROM TinNhan_NhomChat WHERE tennhom  = N'" +
                    gc.TenNhom + "' AND nguoigui= N'" + gc.Username + "'";
             string last_id = DataProvider.Instance.ExecuteQuery(query3).Rows[0][0].ToString();
-            return "[DONE]~" + gc.Username + "~" + last_id;
+            return "[DONE]~" + last_id;
         }
         public string CheckMessGr(string us, string gn)
         {
@@ -223,12 +223,12 @@ namespace Server.DAO
                         + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~"  +
                         gc.Username + "^";
                 }
-                return traLoi = traLoi.Substring(0, traLoi.Length - 1);
+                return traLoi.Substring(0, traLoi.Length - 1);
                 //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc+ trạng thái tin nhắn
             }
             else//Không có  tin nhắn
             {
-                return traLoi = "NULL";
+                return "NULL";
             }
         }
         public string NewMessGr(string us, string gn)
@@ -261,12 +261,12 @@ namespace Server.DAO
                             + "' and username = N'" + gc.Username + "'";
                         DataProvider.Instance.ExecuteNonQuery(queryupdate);
                     }
-                    return traLoi = traLoi.Substring(0, traLoi.Length - 1);
+                    return traLoi.Substring(0, traLoi.Length - 1);
                     //trả lời =  tên hiển thị ~ nội dung ~ time ~ username người gửi ~ us người nhận
                 }
                 else//Không có  tin nhắn
                 {
-                    return traLoi = "NULL";
+                    return "NULL";
                 }
 
             }// Không bị Kick

@@ -18,9 +18,12 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         bool active = false;
         string idmsg;
         int soMember = 0;
-        string username, groupname, grouppass;
-        string nguoinhancuoi="";
-        List<string> listUsMember = new List<string>();
+        Stack<Guna2Button> stackMess = new Stack<Guna2Button>();
+        private readonly string username;
+        private readonly string groupname;
+        private readonly string grouppass;
+        private string nguoinhancuoi ="";
+        readonly List<string> listUsMember = new List<string>();
         int y;//Tọa độ y của bt tin nhắn
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -98,32 +101,9 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
 
                         Guna2Button btn = new Guna2Button() { AutoSize = true };
                         btn.Tag = dsTinNhan[i];
-
-                        if (i == 0)
-                        {
-                            if (dsTinNhan[i].Split('~')[3] == nguoinhancuoi)
-                            {
-                                AddMess(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[i].Split('~')[4]);
-                            }
-                            else
-                            {
-                                AddMessln(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[i].Split('~')[4]);
-                                nguoinhancuoi = dsTinNhan[i].Split('~')[3];
-                            }
-                        }
-                        else
-                        {
-                            if (dsTinNhan[i].Split('~')[3] == nguoinhancuoi)
-                            {
-                                AddMess(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[i].Split('~')[4]);
-                            }
-                            else
-                            {
-                                AddMessln(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[i].Split('~')[4]);
-                                nguoinhancuoi = dsTinNhan[i].Split('~')[3];
-                            }
-                        }
+                        AddMess(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[i].Split('~')[4]);
                     }
+                    nguoinhancuoi = dsTinNhan[dsTinNhan.Count-1].Split('~')[3];
                 }
                 if (!String.IsNullOrEmpty(slMember) && Int32.Parse(slMember) != soMember)
                 {
@@ -135,7 +115,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         }//Tải tin nhắn mới
         private void PnLichSu_ControlAdded(object sender, ControlEventArgs e)
         {
-            pnLichSu.ScrollControlIntoView(e.Control);
+            pnLichSu.ScrollControlIntoView(e.Control); //Tự động sroll xuống dưới cùng của tin nhắn
         }
         private void TbNoiDung_LostFocus(object sender, EventArgs e)
         {
@@ -166,37 +146,16 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     groupname + "~" + tbNoiDung.Text.MaHoa();
                 string ketqua = Result.Instance.Request(yeucau);
                 //"[DONE]~" + gc.Username +"~"+ last_id;
+                //------------------------
                 Guna2Button btn = new Guna2Button() { AutoSize = true };
-                btn.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                btn.Tag = tbNoiDung.Text + "~" + ketqua;
-                btn.Text = tbNoiDung.Text;
-                btn.BorderRadius = 10;
-                btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-                ToolTip time = new ToolTip();
-                time.SetToolTip(btn, $"Được gửi vào lúc: {DateTime.Now.ToString()}");
-                btn.MouseUp += Btn_MouseClick;
-                ContextMenuStrip cms = new ContextMenuStrip();
-                cms.Items.Add("Thu hồi tin nhắn");
-                cms.Items[0].Click += ThuHoiTinNhan_Click;//---------------------
-                btn.ContextMenuStrip = cms;
-                int x = pnLichSu.Width - btn.Size.Width - 20;
-                btn.CustomizableEdges.BottomRight = false;
-                int y_max = pnLichSu.Height + 5;//Điểm local max
-                if (y + btn.Size.Height > y_max  - 5)
-                {
-                    btn.Location = new Point(x-15, pnLichSu.Height + 5);
-                }
-                else
-                {
-                    y += btn.Size.Height + 5;
-                    btn.Location = new Point(x, y);
-                }
-                if (!ketqua.StartsWith("[DONE]"))
+                btn.Tag ="Bạn~"+tbNoiDung.Text.MaHoa() + $"~{DateTime.Now}";
+                AddMess(btn);
+                if (!ketqua.StartsWith("[DONE]"))//Tin nhắn không được gửi đi
                 {
                     Bitmap warning = SystemIcons.Warning.ToBitmap();
                     btn.Image = warning;
                 }
-                nguoinhancuoi = ketqua.Split('~')[1];
+                nguoinhancuoi = "you";
                 pnLichSu.VerticalScroll.Value = pnLichSu.VerticalScroll.Maximum;//Sroll Max
                 pnLichSu.Controls.Add(btn);
                 tbNoiDung.Text = "";
@@ -222,7 +181,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
 
             MessageBox.Show($"{soMember}");
         }
-
         private void lbStt_Click(object sender, EventArgs e)
         {
             tbNoiDung.Focus();
@@ -258,6 +216,22 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         {
             tbMatKhauGr.UseSystemPasswordChar = cbHideOrShowPass.Checked;
         }
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            //Xử lý trạng thái mess
+            if ((sender as Guna2Button).Text == ((sender as Guna2Button).Tag as string).Split('~')[2])
+                active = true;
+            else
+                active = false;
+
+            if (active)
+                active = false;
+            else
+            {
+                active = true;
+            }
+            MsgButton(active, (sender as Guna2Button));
+        }
         #endregion
         #region Method
         public void LoadMemGr()
@@ -289,9 +263,9 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         {
             //Yc Gửi tin nhắn = [CheckMIGroup] ~ username ~ groupname
             string ketqua = Result.Instance.Request("[CheckMIGroup]~" + username + "~" + groupname);
-            //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc
+            //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người nhận
             y = 0;
-            if (ketqua != "NULL"&& !string.IsNullOrEmpty(ketqua))
+            if (ketqua != "NULL" && !string.IsNullOrEmpty(ketqua))
             {
                 pnLichSu.Text = "";
                 List<String> dsTinNhan = ketqua.Split('^').ToList();
@@ -303,23 +277,15 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     //dsTinNhan[i].Split('~')[3] -username người gửi ở dạng mã hóa
                     Guna2Button btn = new Guna2Button() { AutoSize = true };
                     btn.Tag = dsTinNhan[i];
-                    
-                    if (i == 0) //Xử lý tin nhắn đầu tiên
+                    if (i > 0)
                     {
-                        AddMessFrist(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
+                        nguoinhancuoi = dsTinNhan[i-1].Split('~')[3];
                     }
-                    else
+                    else // chưa có người nhắn
                     {
-                        if (dsTinNhan[i].Split('~')[3] == dsTinNhan[i-1].Split('~')[3]) // cùng 1 người gửi
-                        {
-                            
-                            AddMess(btn,dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
-                        }
-                        else // không cùng 1 người gửi
-                        {
-                            AddMessln(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
-                        }
+                        nguoinhancuoi = "you";
                     }
+                    AddMess(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
                 }
                 nguoinhancuoi = dsTinNhan[dsTinNhan.Count-1].Split('~')[3];
             }
@@ -328,22 +294,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 pnLichSu.Text = "";
             }
         }//Tải toàn bộ tin nhắn cũ
-        private void Btn_Click(object sender, EventArgs e)
-        {
-            //Xử lý trạng thái mess
-            if ((sender as Guna2Button).Text == ((sender as Guna2Button).Tag as string).Split('~')[2])
-                active = true;
-            else
-                active = false;
-
-            if (active)
-                active = false;
-            else
-            {
-                active = true;
-            }
-            MsgButton(active, (sender as Guna2Button));
-        }
         private void MsgButton(bool status,Guna2Button btn)
         {
             Label lbTime = new Label();
@@ -371,98 +321,59 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 }
             });
         }
-        private void AddMessln(Guna2Button btn,string usg, string usn)//Cần thêm các điều kiện
+        private void AddMess(Guna2Button btn,string usgui = "you",string usnhan = "you")
         {
-            //Cấu hình button
             Label lb = CauHinhMsgBt(ref btn);
             int x = pnLichSu.Width - btn.Size.Width - 20;
             int y_max = pnLichSu.Height + 5;
-
-            if (y + btn.Size.Height > y_max - 5 && usg == usn)
-            //if (y > y_max - 5 && usg == usn)
+            int y_lb;//Tọa độ Y lable
+            if (stackMess.Count == 0 && usgui != usnhan) //Xử lý y đầu tiên, nếu tin nhắn đầu tiên là của bản thân thì y=0
+                y = btn.Height;
+                //Tin nhắn đầu không phải của bản thân
+            else if (stackMess.Count == 0 && usgui == usnhan)
+                y = 0;
+            else //stackMess khác 0
             {
-                btn.CustomizableEdges.BottomRight = false;
-                btn.Location = new Point(x - 15, y_max);
-                btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
+                if (nguoinhancuoi == usgui)
+                    y = (stackMess.Peek()).Location.Y + btn.Height + 5; //Không chèn lb
+                    //Đệm 1: y=0, đệm 2: y = y(1)+28 +5 = 33, đệm 3: y = y(3)+ 28 +5 = 46..
+                else
+                    y = (stackMess.Peek()).Location.Y + btn.Height + lb.Height;//Chèn lb
             }
-            else if (y + btn.Size.Height > y_max - 5 && usg != usn)
+            if (y + btn.Height - lb.Height >= y_max)
             {
-                btn.CustomizableEdges.BottomLeft = false;
-                btn.Location = new Point(5, y_max);
-                lb.Location = new Point(5, y_max);
-                pnLichSu.Controls.Add(lb);
-            }
-            else if (y < y_max - 5 && usg == usn)
-            {
-                y += btn.Size.Height + 5; //xuống 5
-                btn.CustomizableEdges.BottomRight = false;
-                btn.Location = new Point(x, y);
-                btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
+                y = y_max;
+                x = pnLichSu.Width - btn.Size.Width - 35;
+                y_lb = y_max;
             }
             else
             {
-                y += btn.Size.Height + lb.Height; //xuống 
-                int y_lb = y - btn.Height + 10;//Tọa độ Y lable
-                btn.CustomizableEdges.BottomLeft = false;
-                btn.Location = new Point(5, y);
-                lb.Location = new Point(5, y_lb);
-                pnLichSu.Controls.Add(lb);
+                y_lb = y - btn.Height + 10;//Tọa độ Y lable
             }
-            pnLichSu.Controls.Add(btn);
-        }
-        private void AddMess(Guna2Button btn , string usg,string usn)
-        {
-            //Cấu hình button
-            CauHinhMsgBt(ref btn);
-            y += btn.Size.Height + 5;
-            int x = pnLichSu.Width - btn.Size.Width - 20;
-            int y_max = pnLichSu.Height + 5;
-            if (y > y_max - 5 && usg != usn)
+            if (usgui != usnhan) // Bên trái khung chat
             {
-                btn.Location = new Point(5, y_max);
-                btn.CustomizableEdges.BottomLeft = false;
+                if (nguoinhancuoi == usgui)//So sánh người nhắn trước đó và người ngắn cuối
+                {
+                    //cùng một người thì không cần hiện lb
+                    btn.CustomizableEdges.BottomLeft = false;
+                    btn.Location = new Point(5, y);
+                }
+                else //Hiện lb
+                {
+                    btn.CustomizableEdges.BottomLeft = false;
+                    btn.Location = new Point(5, y);
+                    lb.Location = new Point(5, y_lb);
+                    pnLichSu.Controls.Add(lb);
+                }
             }
-            else if (y > y_max -5 && usg == usn)
-            {
-                btn.Location = new Point(x-15, y_max);
-                btn.CustomizableEdges.BottomRight = false;
-                btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-            }
-            else if(y < y_max - 5 && usg == usn)
+            else //Tin nhắn của bản thân
             {
                 btn.Location = new Point(x, y);
                 btn.CustomizableEdges.BottomRight = false;
                 btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             }
-            else
-            {
-                btn.Location = new Point(5, y);
-                btn.CustomizableEdges.BottomLeft = false;
-            }
             pnLichSu.Controls.Add(btn);
-        }
-        private void AddMessFrist(Guna2Button btn,string usgui,string usnhan)
-        {
-            Label lb = CauHinhMsgBt(ref btn);
-            //Cấu hình button
-
-            if (usgui != usnhan)
-            {
-                y = lb.Height-5;
-                int y_lb = y - btn.Height + 10;//Tọa độ Y lable
-                btn.CustomizableEdges.BottomLeft = false;
-                btn.Location = new Point(5, y);
-                lb.Location = new Point(5, y_lb);
-                pnLichSu.Controls.Add(lb);
-            }
-            else
-            {
-                int x = pnLichSu.Width - btn.Size.Width - 20;
-                btn.Location = new Point(x, y);
-                btn.CustomizableEdges.BottomRight = false;
-                btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-            }
-            pnLichSu.Controls.Add(btn);
+            stackMess.Push(btn);
         }
         private Label CauHinhMsgBt(ref Guna2Button btn)
         {

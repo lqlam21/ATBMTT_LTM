@@ -135,7 +135,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
             // timeNow
             // 
             this.timeNow.Enabled = true;
-            this.timeNow.Interval = 1000;
             this.timeNow.Tick += new System.EventHandler(this.timeNow_Tick);
             // 
             // lbTime
