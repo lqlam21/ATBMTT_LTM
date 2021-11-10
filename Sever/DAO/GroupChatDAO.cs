@@ -34,7 +34,7 @@ namespace Server.DAO
                     string query_updatePassGr = "UPDATE NhomChat SET matkhau = N'" + myGr.MatKhau + "' WHERE tennhom = N'" + myGr.TenNhom + "'";
                     DataProvider.Instance.ExecuteNonQuery(query_updatePassGr);
                     DataTable da = DataProvider.Instance.ExecuteQuery("SELECT noidung FROM TinNhan_NhomChat WHERE tennhom = N'"
-                        + myGr.TenNhom + "'");
+                        + myGr.TenNhom + "' and trangthai NOT IN (N'Thu Hồi',N'Đã bị thu hồi')");
                     if (da.Rows.Count > 0)
                     {
                         foreach (DataRow item in da.Rows)
@@ -42,7 +42,8 @@ namespace Server.DAO
                             myGr.TinNhan = item["noidung"].ToString();
                             myGr.GiaiMaTinNhan(old_key);
                             myGr.MaHoaTinNhan(new_key);
-                            string query_updateMess = "UPDATE TinNhan_NhomChat SET noidung = N'" + myGr.TinNhan + "' WHERE tennhom = N'" + myGr.TenNhom + "'";
+                            string query_updateMess = "UPDATE TinNhan_NhomChat SET noidung = N'" + myGr.TinNhan 
+                                + "' WHERE tennhom = N'" + myGr.TenNhom + "' and noidung = N'"+ item["noidung"].ToString() + "'";
                             DataProvider.Instance.ExecuteNonQuery(query_updateMess);
                         }
                     }
@@ -200,14 +201,22 @@ namespace Server.DAO
             string last_id = DataProvider.Instance.ExecuteQuery(query3).Rows[0][0].ToString();
             return "[DONE]~" + last_id;
         }
-        public string CheckMessGr(string us, string gn)
+        public string CheckMessGr(string us, string gn,string sl)
         {
             GroupChat gc = new GroupChat();
             gc.Username = us;
             gc.TenNhom = gn;
             MD5Helper md5 = new MD5Helper(TakeKeyGroup(gc.TenNhom));
-            string query = "SELECT * FROM TinNhan_NhomChat WHERE tennhom = N'" + gc.TenNhom + "' " +
+            string query;
+            if (sl == "full")
+            {
+                query = "SELECT * FROM TinNhan_NhomChat WHERE tennhom = N'" + gc.TenNhom + "' " +
                 "and trangthai = N'Đã Nhận' and username =N'" + gc.Username + "'";
+            }
+            else
+            {
+                query = $"EXEC LoadMess N'{gc.TenNhom}',N'{gc.Username}'";
+            }
             DataTable mess = DataProvider.Instance.ExecuteQuery(query);
             string traLoi = "";
             string tenhienthi;
@@ -216,7 +225,12 @@ namespace Server.DAO
                 foreach (DataRow r in mess.Rows)
                 {
                     if (gc.Username == r["nguoigui"].ToString())
-                        tenhienthi = "Bạn";
+                    {
+                        string query3 = "SELECT MAX(id) FROM TinNhan_NhomChat WHERE tennhom  = N'" +
+                        gc.TenNhom + "' AND nguoigui= N'" + gc.Username + "'";
+                        tenhienthi = DataProvider.Instance.ExecuteQuery(query3).Rows[0][0].ToString();
+                    }
+
                     else
                         tenhienthi = DisPlayName(r["nguoigui"].ToString());
                     traLoi += tenhienthi + "~" + MD5Helper.Instance.MaHoa(md5.GiaiMa(r["noidung"].ToString())) + "~"
@@ -224,7 +238,7 @@ namespace Server.DAO
                         gc.Username + "^";
                 }
                 return traLoi.Substring(0, traLoi.Length - 1);
-                //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc+ trạng thái tin nhắn
+                //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc
             }
             else//Không có  tin nhắn
             {

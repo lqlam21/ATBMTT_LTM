@@ -53,8 +53,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.tbDisplayname = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btEditDisplayname = new System.Windows.Forms.Button();
-            this.pLoading = new Guna.UI2.WinForms.Guna2CircleProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
             this.pnBgBot = new Guna.UI2.WinForms.Guna2Panel();
             this.pnBgTop = new Guna.UI2.WinForms.Guna2Panel();
             this.panelXacNhan.SuspendLayout();
@@ -321,34 +319,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.btEditDisplayname.UseVisualStyleBackColor = true;
             this.btEditDisplayname.Click += new System.EventHandler(this.btEditDisplayname_Click);
             // 
-            // pLoading
-            // 
-            this.pLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pLoading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
-            this.pLoading.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.pLoading.ForeColor = System.Drawing.Color.White;
-            this.pLoading.InnerColor = System.Drawing.Color.Transparent;
-            this.pLoading.Location = new System.Drawing.Point(327, 159);
-            this.pLoading.Minimum = 0;
-            this.pLoading.Name = "pLoading";
-            this.pLoading.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.pLoading.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.pLoading.ShadowDecoration.Parent = this.pLoading;
-            this.pLoading.Size = new System.Drawing.Size(130, 130);
-            this.pLoading.TabIndex = 27;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(308, 292);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(170, 25);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "Mã hóa lại dữ liệu";
-            // 
             // pnBgBot
             // 
             this.pnBgBot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -385,8 +355,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(785, 462);
             this.Controls.Add(this.pnBgBot);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.pLoading);
             this.Controls.Add(this.btEditDisplayname);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -438,8 +406,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
         public System.Windows.Forms.TextBox tbDisplayname;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btEditDisplayname;
-        private Guna.UI2.WinForms.Guna2CircleProgressBar pLoading;
-        private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Panel pnBgTop;
         private Guna.UI2.WinForms.Guna2Panel pnBgBot;
     }

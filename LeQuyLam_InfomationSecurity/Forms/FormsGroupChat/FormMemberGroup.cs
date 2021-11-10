@@ -229,7 +229,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         public void LoadMess()
         {
             //Yc Gửi tin nhắn = [CheckMIGroup] ~ username ~ groupname
-            string ketqua = Result.Instance.Request("[CheckMIGroup]~" + username + "~" + groupname);
+            string ketqua = Result.Instance.Request("[CheckMIGroup]~" + username + "~" + groupname + "~0");
             //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc
             y = 0;
             if (ketqua != "NULL" && !string.IsNullOrEmpty(ketqua))

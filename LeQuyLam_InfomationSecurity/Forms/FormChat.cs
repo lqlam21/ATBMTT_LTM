@@ -166,7 +166,12 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             //Yc = [?Gr] ~ username
             string ketqua = Result.Instance.Request("[?Gr]~" + username);
-            if(!string.IsNullOrEmpty(ketqua) && Int32.Parse(ketqua) != soluongGroup) //Có xảy ra cập nhật
+            if (string.IsNullOrEmpty(ketqua))
+            {
+                this.Close();
+                MessageBox.Show("Mất kết nối máy chủ");
+            }
+            else if(Int32.Parse(ketqua) != soluongGroup) //Có xảy ra cập nhật
             {
                 LoadingGroup();
             }

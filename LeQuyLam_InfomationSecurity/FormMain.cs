@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -61,6 +63,7 @@ namespace LeQuyLam_InfomationSecurity
             sUsername = txbUserName.Text;
             //Cấu trúc [DangNhap]~ UserNam ~ Password;
             String yeuCau = "[DangNhap]~" + txbUserName.Text + "~" + txbPassword.Text.MaHoa();
+
             String ketQua = Result.Instance.Request(yeuCau);
             if (String.IsNullOrEmpty(ketQua))
             {

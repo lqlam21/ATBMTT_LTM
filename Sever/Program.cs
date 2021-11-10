@@ -286,10 +286,11 @@ namespace Server
                 }//Gửi tin nhắn vào nhóm
                 else if (noiDung.StartsWith("[CheckMIGroup]"))
                 {
-                    //Yc load tin nhắn = [CheckMIGroup] ~ username ~ groupname
+                    //Yc load tin nhắn = [CheckMIGroup] ~ username ~ groupname ~ stt
                     string username = noiDung.Split('~')[1];
                     string groupname = noiDung.Split('~')[2];
-                    string traLoi = GroupChatDAO.Instance.CheckMessGr(username, groupname);
+                    string stt = noiDung.Split('~')[3];
+                    string traLoi = GroupChatDAO.Instance.CheckMessGr(username, groupname,stt);
                     skXL.Send(Encoding.UTF8.GetBytes(traLoi));
                 }//Tải tin nhắn 
                 else if (noiDung.StartsWith("[NewMessGroup]"))

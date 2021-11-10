@@ -13,7 +13,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
     {
         #region Fields
         private string username,displayname;
-        System.Threading.Thread loadingupdatekey;
         private int type;
         private bool active,activename = false;
         private bool active3, active2 = true;
@@ -41,7 +40,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 }
             }
             //Chưa tìm được cách gộp tất cả các control (cả form cả ở panel nên viết tạm)
-            pLoading.ProgressColor = ThemeColor.PrimaryColor;
             btConfirmChangePass.BackColor = ThemeColor.PrimaryColor;
             btConfirmChangePass.ForeColor = Color.White;
             btConfirmChangePass.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
@@ -49,7 +47,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
             btConfirmSecuritySecond.ForeColor = Color.White;
             btConfirmSecuritySecond.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
             labelStatus.ForeColor = ThemeColor.SecondaryColor;
-            label5.ForeColor = label6.ForeColor = label7.ForeColor = ThemeColor.PrimaryColor;
             pnBgBot.BackColor = pnBgTop.BackColor = this.BackColor = ThemeColor.ChangeColorBrightness(ThemeColor.PrimaryColor, +0.8);
         }
         private void LoadType()
@@ -110,21 +107,20 @@ namespace LeQuyLam_InfomationSecurity.Forms
             }
             else
             {
-                    //Đổi key : [DoiKey] ~ username ~ newkey
-                loadingupdatekey = new System.Threading.Thread(LoadingUpdateKey);
-                loadingupdatekey.IsBackground = true;
-                loadingupdatekey.Start();
                 string yeuCau = "[DoiKey]~"+ username +"~"+ tbKey.Text;
                 string ketQua = Result.Instance.Request(yeuCau);
-                if (ketQua == "OK")
-                {
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi máy chủ. Vui lòng thử lại sau");
-                    return;
-                }
+                    if (ketQua == "OK")
+                    {
+                        MessageBox.Show("Đổi mã khóa thành công");
+                        tbKey.Text = key;
+                        tbKey.ReadOnly = true;
+                        btSua.Text = "Sửa";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi máy chủ. Vui lòng thử lại sau");
+                        return;
+                    }
                 }
             });
         }
@@ -178,22 +174,10 @@ namespace LeQuyLam_InfomationSecurity.Forms
         }
         private void LoadingUpdateKey()
         {
-            pLoading.Show();
-            label7.Show();
-            pLoading.Minimum = 0; //Đặt giá trị nhỏ nhất cho ProgressBar
-            pLoading.Maximum = 100; //Đặt giá trị lớn nhất cho ProgressBar
-            for (int i = 0; i <= 100; i++)
-            {
-                pLoading.Value = i; //Gán giá trị cho ProgressBar
-                System.Threading.Thread.Sleep(50);
-            }
             MessageBox.Show("Đổi mã khóa thành công");
             tbKey.Text = key;
-            pLoading.Hide();
-            label7.Hide();
             tbKey.ReadOnly = true;
             btSua.Text = "Sửa";
-            loadingupdatekey.Abort();
         }
         private void HideAllPanel()
         {
@@ -210,8 +194,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             LoadType();
             LoadTheme();
-            pLoading.Hide();
-            label7.Hide();
             CheckStatus();
             lbTime.Text = DateTime.Now.ToString("dddd dd MMMM yyyy \n\r               HH:mm:ss");
             lbTime.TextAlign = ContentAlignment.MiddleCenter;

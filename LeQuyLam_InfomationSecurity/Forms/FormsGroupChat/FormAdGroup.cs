@@ -22,6 +22,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private readonly string username;
         private readonly string groupname;
         private readonly string grouppass;
+        int y_max;
         private string nguoinhancuoi ="";
         readonly List<string> listUsMember = new List<string>();
         int y;//Tọa độ y của bt tin nhắn
@@ -51,7 +52,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             pnLichSu.ControlAdded += PnLichSu_ControlAdded;
             cbHideOrShowPass.Checked = true;
             toolTipChangePass.SetToolTip(btChangePassGr, "Nhập mật khẩu mới và nhấn\r\nEnter để đổi mật khẩu nhóm");
-            LoadMess();
+            LoadMess("default");
             LoadMemGr();
         }
         private void btInvaite_Click(object sender, EventArgs e)
@@ -80,7 +81,12 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             //Yc load tin nhắn = [NewMessGroup] ~ username ~ groupname
             string ketqua = Result.Instance.Request("[NewMessGroup]~" +username + "~" + groupname);
             string slMember = Result.Instance.Request("[?Member]~" + groupname);
-            if (ketqua == "NotInGr" && !String.IsNullOrEmpty(ketqua))
+            if (String.IsNullOrEmpty(ketqua))
+            {
+                this.Close();
+                MessageBox.Show("Mất kết nối máy chủ");
+            }
+            else if (ketqua == "NotInGr")
             {
                 this.Close();
                 MessageBox.Show("Nhóm đã bị xóa");
@@ -145,10 +151,10 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 string yeucau = "[SendMTGroup]~" + username + "~" +
                     groupname + "~" + tbNoiDung.Text.MaHoa();
                 string ketqua = Result.Instance.Request(yeucau);
-                //"[DONE]~" + gc.Username +"~"+ last_id;
+                //"[DONE] ~ last_id;
                 //------------------------
                 Guna2Button btn = new Guna2Button() { AutoSize = true };
-                btn.Tag ="Bạn~"+tbNoiDung.Text.MaHoa() + $"~{DateTime.Now}";
+                btn.Tag = ketqua.Split('~')[1]+ "~" +tbNoiDung.Text.MaHoa() + "~" + DateTime.Now;
                 AddMess(btn);
                 if (!ketqua.StartsWith("[DONE]"))//Tin nhắn không được gửi đi
                 {
@@ -162,12 +168,23 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 tbNoiDung.Focus();
             }
         }
-
         private void Btn_MouseClick(object sender, MouseEventArgs e)
         {
+            y_max = pnLichSu.Height + 5;
             if (e.Button == MouseButtons.Left)//Ẩn tin nhắn
             {
-               
+                if ((sender as Guna2Button).Text == ((sender as Guna2Button).Tag as string).Split('~')[2])
+                    active = true;
+                else
+                    active = false;
+
+                if (active)
+                    active = false;
+                else
+                {
+                    active = true;
+                }
+                MsgButton(active, (sender as Guna2Button));
             }
             else if (e.Button == MouseButtons.Right) //Chuột phải là tùy chọn thu hồi tin nhắn
             {
@@ -216,22 +233,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         {
             tbMatKhauGr.UseSystemPasswordChar = cbHideOrShowPass.Checked;
         }
-        private void Btn_Click(object sender, EventArgs e)
-        {
-            //Xử lý trạng thái mess
-            if ((sender as Guna2Button).Text == ((sender as Guna2Button).Tag as string).Split('~')[2])
-                active = true;
-            else
-                active = false;
-
-            if (active)
-                active = false;
-            else
-            {
-                active = true;
-            }
-            MsgButton(active, (sender as Guna2Button));
-        }
         #endregion
         #region Method
         public void LoadMemGr()
@@ -259,12 +260,14 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 soMember = 0;
 
         }
-        public void LoadMess()
+        public void LoadMess(string stt)
         {
             //Yc Gửi tin nhắn = [CheckMIGroup] ~ username ~ groupname
-            string ketqua = Result.Instance.Request("[CheckMIGroup]~" + username + "~" + groupname);
             //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người nhận
-            y = 0;
+            string ketqua;
+            ketqua = Result.Instance.Request("[CheckMIGroup]~" + username + "~" + groupname + "~" + stt);
+
+            y_max = pnLichSu.Height + 5;
             if (ketqua != "NULL" && !string.IsNullOrEmpty(ketqua))
             {
                 pnLichSu.Text = "";
@@ -288,50 +291,76 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     AddMess(btn, dsTinNhan[i].Split('~')[3], dsTinNhan[0].Split('~')[4]);
                 }
                 nguoinhancuoi = dsTinNhan[dsTinNhan.Count-1].Split('~')[3];
+                if (dsTinNhan.Count ==10)
+                {
+                    Label lb_stt = new Label
+                    {
+                        Text = "Tải thêm tin",
+                        Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Underline, GraphicsUnit.Point, ((byte)(0))), // gạch chân
+                        Anchor = (AnchorStyles.Top),
+                        ForeColor = Color.White,
+                        Location = new Point(250, 0)
+                    };
+                    pnLichSu.Controls.Add(lb_stt);
+                    lb_stt.Click += Lb_stt_Click;
+                }
+                if (nguoinhancuoi == dsTinNhan[0].Split('~')[4])
+                {
+                    nguoinhancuoi = "you";
+                }
             }
             else
             {
-                pnLichSu.Text = "";
+                return;
             }
-        }//Tải toàn bộ tin nhắn cũ
+        }//Tảitin nhắn
+
+        private void Lb_stt_Click(object sender, EventArgs e)
+        {
+            pnLichSu.Controls.Clear();
+            stackMess.Clear();
+            LoadMess("full"); //Tải toàn bộ tin nhắn
+        }
+
         private void MsgButton(bool status,Guna2Button btn)
         {
             Label lbTime = new Label();
+            int x =5;
             btn.Invoke((MethodInvoker)delegate
             {
                 if (status) //Hiển thị thời gian
                 {
                     btn.Text = (btn.Tag as string).Split('~')[2]; ;
-                    //Xử lý dạng mess( là tnhan gửi hay tnhan nhận)
-                    if (btn.Location.X != 5)
-                    {
-                        int x = pnLichSu.Width - btn.Size.Width - 34;
-                        btn.Location = new Point(x, btn.Location.Y);
-                    }
                 }
                 else // Đóng hiển thị thời gian
                 {
-                    btn.Text = (btn.Tag as string).Split('~')[1];
-                    //Xử lý dạng mess( là tnhan gửi hay tnhan nhận)
-                    if (btn.Location.X != 5)
-                    {
-                        int x = pnLichSu.Width - btn.Size.Width - 34;
-                        btn.Location = new Point(x, btn.Location.Y);
-                    }
+                    btn.Text = (btn.Tag as string).Split('~')[1].GiaiMa();
                 }
+                if (btn.Location.X != 5 && y >= y_max)
+                {
+                    x = pnLichSu.Width - btn.Size.Width - 20;
+                }
+                else if (btn.Location.X != 5 && y < y_max)
+                {
+                    x = pnLichSu.Width - btn.Size.Width - 5;
+                }
+                btn.Location = new Point(x, btn.Location.Y);
             });
         }
         private void AddMess(Guna2Button btn,string usgui = "you",string usnhan = "you")
         {
             Label lb = CauHinhMsgBt(ref btn);
-            int x = pnLichSu.Width - btn.Size.Width - 20;
-            int y_max = pnLichSu.Height + 5;
+            //int x = pnLichSu.Width - btn.Size.Width - 20;
+            y_max = pnLichSu.Height + 5;
             int y_lb;//Tọa độ Y lable
+            int x = pnLichSu.Width - btn.Size.Width - 5;
             if (stackMess.Count == 0 && usgui != usnhan) //Xử lý y đầu tiên, nếu tin nhắn đầu tiên là của bản thân thì y=0
                 y = btn.Height;
                 //Tin nhắn đầu không phải của bản thân
             else if (stackMess.Count == 0 && usgui == usnhan)
-                y = 0;
+            {
+                y = 25;
+            }
             else //stackMess khác 0
             {
                 if (nguoinhancuoi == usgui)
@@ -343,7 +372,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             if (y + btn.Height - lb.Height >= y_max)
             {
                 y = y_max;
-                x = pnLichSu.Width - btn.Size.Width - 35;
+                x = pnLichSu.Width - btn.Size.Width - 20;
                 y_lb = y_max;
             }
             else
@@ -372,6 +401,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 btn.CustomizableEdges.BottomRight = false;
                 btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             }
+            btn.MouseUp += Btn_MouseClick;
             pnLichSu.Controls.Add(btn);
             stackMess.Push(btn);
         }
@@ -383,7 +413,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             btn.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             btn.BorderRadius = 10;
             btn.Text = ((btn.Tag as string).Split('~')[1]).GiaiMa();//Nội dung
-            btn.Click += Btn_Click;
             Label lb = new Label() { AutoSize = true };
             lb.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             lb.ForeColor = Color.White;
