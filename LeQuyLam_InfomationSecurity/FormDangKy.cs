@@ -13,7 +13,9 @@ namespace LeQuyLam_InfomationSecurity
         string sCode;//Mã xác thực email (random 4 chữ số)
         int nCountDown = 61; // Set thời gian chờ là 61 => khi bắt đầu đếm ngược sẽ đếm từ 60
         int nTimeLate = 61;//Thời gian hiệu lực của code
-        Timer aTimerDelayButton,aTimerCountDown;// tạo ra 2 timer để đếm ngược và tạm vô hiệu hóa button
+        private readonly Timer aTimerDelayButton;
+        private Timer aTimerCountDown;
+
         public FormDangKy()
         {
             InitializeComponent();

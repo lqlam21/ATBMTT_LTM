@@ -14,18 +14,20 @@ namespace LeQuyLam_InfomationSecurity
     {
         #region Fields
         string sHello;
-        int type;
-        string key;
-        string username;
+
+        readonly string key;
+        readonly string username;
+        private readonly int type;
         private Button currentButton;
-        private Random random; //Tạo màu ngẫu nhiên mỗi lần click button
+        private readonly Random random; //Tạo màu ngẫu nhiên mỗi lần click button
         private int tempIndex;
         private Form activeForm;
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam); //Các thao tác sự kiện
-        FormMain fMain = new FormMain();
+
+        readonly FormMain fMain = new FormMain();
         #endregion
 
         #region Constructor

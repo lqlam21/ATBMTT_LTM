@@ -381,8 +381,8 @@ namespace Server
                 }//Update nhóm liên tục
                 else if (noiDung.StartsWith("[DellMess]"))
                 {
-                    //YC: [ThuHoiMess] ~ id ~ count
-                    GroupChatDAO.Instance.DelMess(noiDung.Split('~')[1], int.Parse(noiDung.Split('~')[2]));
+                    //YC: [DellMess] ~ id_mess
+                    GroupChatDAO.Instance.DelMess(noiDung.Split('~')[1]);
                     skXL.Send(Encoding.UTF8.GetBytes("DONE"));
                 }
                 else if (noiDung.StartsWith("[EditPassGr]")){

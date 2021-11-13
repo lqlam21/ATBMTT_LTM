@@ -34,7 +34,7 @@ namespace Server.DAO
                     string query_updatePassGr = "UPDATE NhomChat SET matkhau = N'" + myGr.MatKhau + "' WHERE tennhom = N'" + myGr.TenNhom + "'";
                     DataProvider.Instance.ExecuteNonQuery(query_updatePassGr);
                     DataTable da = DataProvider.Instance.ExecuteQuery("SELECT noidung FROM TinNhan_NhomChat WHERE tennhom = N'"
-                        + myGr.TenNhom + "' and trangthai NOT IN (N'Thu Hồi',N'Đã bị thu hồi')");
+                        + myGr.TenNhom + "'");
                     if (da.Rows.Count > 0)
                     {
                         foreach (DataRow item in da.Rows)
@@ -176,29 +176,33 @@ namespace Server.DAO
             gc.TenNhom = TenNhom;
             gc.TinNhan = TinNhan;
             gc.MaHoaTinNhan(TakeKeyGroup(gc.TenNhom));
-            string query = "SELECT * FROM NhomChat_ThanhVien WHERE tennhom = N'" + gc.TenNhom + "' AND trangthai = N'Đang Trong Nhóm'";
+            string query = "SELECT * FROM NhomChat_ThanhVien WHERE tennhom = N'" + gc.TenNhom 
+                + "' AND trangthai = N'Đang Trong Nhóm'";
             DataTable dl = DataProvider.Instance.ExecuteQuery(query);
-            if (dl != null && dl.Rows.Count > 0)
+            string query3 = "SELECT MAX(id) FROM TinNhan_NhomChat";
+            DataTable dbid = DataProvider.Instance.ExecuteQuery(query3);
+            string last_id = "0";
+            if (dbid.Rows.Count >0)
+                last_id = dbid.Rows[0][0].ToString();
+            if (!int.TryParse(last_id,out int check))
             {
-                for (int i = 0; i < dl.Rows.Count; i++) //Vòng lặp gửi cho từng thành viên
-                {
-                    if (dl.Rows[i][0].ToString() == gc.Username)
-                        trangthai = "Đã Nhận";
-                    else
-                        trangthai = "Đã Gửi";
-                    string querysend2 = "Insert Into TinNhan_NhomChat(username, tennhom, noidung, trangthai, " +
-                        "thoigian, nguoigui) Values(N'"
-                    + dl.Rows[i][0].ToString() + "', N'"
-                    + gc.TenNhom + "', N'"
-                    + gc.TinNhan + "',N'" + trangthai + "', N'"
-                    + DateTime.Now.ToString() + "',N'"
-                    + gc.Username + "')";
-                    DataProvider.Instance.ExecuteNonQuery(querysend2);
-                }
+                last_id = "0";
             }
-            string query3 = "SELECT MAX(id) FROM TinNhan_NhomChat WHERE tennhom  = N'" +
-                   gc.TenNhom + "' AND nguoigui= N'" + gc.Username + "'";
-            string last_id = DataProvider.Instance.ExecuteQuery(query3).Rows[0][0].ToString();
+            for (int i = 0; i < dl.Rows.Count; i++) //Vòng lặp gửi cho từng thành viên
+            {
+                if (dl.Rows[i][0].ToString() == gc.Username)//Xử lý tin nhắn của bản thân
+                    trangthai = "Đã Nhận";
+                else
+                    trangthai = "Đã Gửi";
+                string querysend2 = "Insert Into TinNhan_NhomChat(username, tennhom, noidung, trangthai, " +
+                    "thoigian, nguoigui, id_mess) Values(N'"
+                + dl.Rows[i][0].ToString() + "', N'"
+                + gc.TenNhom + "', N'"
+                + gc.TinNhan + "',N'" + trangthai + "', N'"
+                + DateTime.Now.ToString() + "',N'"
+                + gc.Username + "'," + last_id + ")";
+                DataProvider.Instance.ExecuteNonQuery(querysend2);
+            }
             return "[DONE]~" + last_id;
         }
         public string CheckMessGr(string us, string gn,string sl)
@@ -226,9 +230,7 @@ namespace Server.DAO
                 {
                     if (gc.Username == r["nguoigui"].ToString())
                     {
-                        string query3 = "SELECT MAX(id) FROM TinNhan_NhomChat WHERE tennhom  = N'" +
-                        gc.TenNhom + "' AND nguoigui= N'" + gc.Username + "'";
-                        tenhienthi = DataProvider.Instance.ExecuteQuery(query3).Rows[0][0].ToString();
+                        tenhienthi = r["id_mess"].ToString();
                     }
 
                     else
@@ -269,10 +271,13 @@ namespace Server.DAO
                             + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~" 
                             + gc.Username + "^";
                     }
-                    foreach (DataRow r in mess.Rows)
+
+                    foreach (string queryupdate in from DataRow r in mess.Rows
+                                                let queryupdate = "Update TinNhan_NhomChat Set trangthai = N'Đã Nhận'" +
+                                                " Where tennhom = N'" + gc.TenNhom
+                                                + "' and username = N'" + gc.Username + "'"
+                                                select queryupdate)
                     {
-                        String queryupdate = "Update TinNhan_NhomChat Set trangthai = N'Đã Nhận' Where tennhom = N'" + gc.TenNhom
-                            + "' and username = N'" + gc.Username + "'";
                         DataProvider.Instance.ExecuteNonQuery(queryupdate);
                     }
                     return traLoi.Substring(0, traLoi.Length - 1);
@@ -289,6 +294,7 @@ namespace Server.DAO
                 return "NotInGr";
             }//Bị kick
         }
+
         public string LoadMemGr(string us, string gn)
         {
             GroupChat gc = new GroupChat();
@@ -315,15 +321,10 @@ namespace Server.DAO
                 gn + "' AND username = N'" + us + "'";
             DataProvider.Instance.ExecuteNonQuery(query);
         }
-        public void DelMess(string id,int count)
+        public void DelMess(string id)
         {
-            string temp = "";
-            for(int i = int.Parse(id); i - count <= int.Parse(id); i++)
-            {
-                temp += i.ToString() + ",";
-            }
             DataProvider.Instance.ExecuteNonQuery("UPDATE TinNhan_NhomChat SET noidung  = N'Đã bị thu hồi', " +
-                "trangthai = N'Thu Hồi' WHERE id in ("+temp.Substring(0,temp.Length-1)+")");
+                "trangthai = N'Thu Hồi' WHERE id_mess = " + id);
         }
         private string DisPlayName(string us)
         {

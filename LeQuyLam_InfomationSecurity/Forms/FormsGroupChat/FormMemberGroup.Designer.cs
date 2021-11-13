@@ -125,7 +125,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             // 
             // timerLoading
             // 
-            this.timerLoading.Interval = 1000;
+            this.timerLoading.Interval = 500;
             this.timerLoading.Tick += new System.EventHandler(this.timerLoading_Tick);
             // 
             // tbNoiDung

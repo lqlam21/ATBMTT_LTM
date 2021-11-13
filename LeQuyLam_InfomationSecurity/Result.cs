@@ -23,33 +23,34 @@ namespace LeQuyLam_InfomationSecurity
             String serverIP = "127.0.0.1";
             int port = 12000;
 
-            System.Net.Sockets.Socket sk = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            try
+            using (Socket sk = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
             {
-                // Ket noi den may chu
-                sk.Connect(IPAddress.Parse(serverIP), port);
+                try
+                {
+                    // Ket noi den may chu
+                    sk.Connect(IPAddress.Parse(serverIP), port);
 
-                // Chuyen yeu cau sang dang mang byte
-                byte[] duLieu = Encoding.UTF8.GetBytes(yeuCau);
+                    // Chuyen yeu cau sang dang mang byte
+                    byte[] duLieu = Encoding.UTF8.GetBytes(yeuCau);
 
-                // Gui yeu cau
-                int dem = sk.Send(duLieu);
+                    // Gui yeu cau
+                    int dem = sk.Send(duLieu);
 
-                // Nhan tra loi va hien thi
-                byte[] ketQua = new byte[102400];
-                int demNhan = sk.Receive(ketQua);
-                String traLoi = Encoding.UTF8.GetString(ketQua, 0, demNhan);
+                    // Nhan tra loi va hien thi
+                    byte[] ketQua = new byte[102400];
+                    int demNhan = sk.Receive(ketQua);
+                    String traLoi = Encoding.UTF8.GetString(ketQua, 0, demNhan);
 
-                // Dong ket noi
-                sk.Close();
-                sk.Dispose();
+                    // Dong ket noi
+                    sk.Close();
+                    sk.Dispose();
 
-                return traLoi;
-            }
-            catch
-            {
-                return null;
+                    return traLoi;
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
     }

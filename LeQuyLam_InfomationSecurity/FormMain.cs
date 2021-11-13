@@ -1,7 +1,4 @@
-﻿using Guna.UI2.WinForms;
-using System;
-using System.Drawing;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace LeQuyLam_InfomationSecurity
@@ -11,7 +8,8 @@ namespace LeQuyLam_InfomationSecurity
         #region Fields
         string sCode;// mã xác thực email (random 4 chữ số)
         System.Threading.Thread loadingcode;
-        Timer aTimerDelayButton, aTimerCountDown;// tạo ra 2 timer để đếm ngược và tạm vô hiệu hóa button
+        private readonly Timer aTimerDelayButton;
+        private Timer aTimerCountDown;
         string sEmail, sName, sUsername, sKey;
         int nType;
         int nCountDown = 61; // Set thời gian chờ là 61 => khi bắt đầu đếm ngược sẽ đếm từ 60

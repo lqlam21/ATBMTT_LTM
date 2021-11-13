@@ -1,7 +1,6 @@
 ﻿using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -18,6 +17,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         bool active = false;
         string idmsg;
         int soMember = 0;
+        
         Stack<Guna2Button> stackMess = new Stack<Guna2Button>();
         private readonly string username;
         private readonly string groupname;
@@ -83,7 +83,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             string slMember = Result.Instance.Request("[?Member]~" + groupname);
             if (String.IsNullOrEmpty(ketqua))
             {
-                this.Close();
+                timerLoading.Stop();
                 MessageBox.Show("Mất kết nối máy chủ");
             }
             else if (ketqua == "NotInGr")
@@ -92,6 +92,20 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 MessageBox.Show("Nhóm đã bị xóa");
             }
             else
+            {
+                foreach (Control btns in pnLichSu.Controls)
+                {
+                    if (btns.GetType() == typeof(Guna2Button))
+                    {
+                        Guna2Button btn = (Guna2Button)btns;
+                        if((btn.Tag as string).Split('~')[0] == "lam33")
+                        {
+                            btn.Text = "123";
+                        }
+                    }
+                }
+            }
+           /* else
             {
                 if (ketqua != "NULL")
                 {
@@ -117,7 +131,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     DataGridViewsMember.Rows.Clear();
                     LoadMemGr();
                 }
-            }
+            }*/
         }//Tải tin nhắn mới
         private void PnLichSu_ControlAdded(object sender, ControlEventArgs e)
         {
@@ -154,13 +168,17 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 //"[DONE] ~ last_id;
                 //------------------------
                 Guna2Button btn = new Guna2Button() { AutoSize = true };
-                btn.Tag = ketqua.Split('~')[1]+ "~" +tbNoiDung.Text.MaHoa() + "~" + DateTime.Now;
-                AddMess(btn);
-                if (!ketqua.StartsWith("[DONE]"))//Tin nhắn không được gửi đi
+                if (string.IsNullOrEmpty(ketqua))//Tin nhắn không được gửi đi
                 {
                     Bitmap warning = SystemIcons.Warning.ToBitmap();
                     btn.Image = warning;
+                    btn.Tag = "null~" + tbNoiDung.Text.MaHoa() + "~" + DateTime.Now;
                 }
+                else
+                {
+                    btn.Tag = ketqua.Split('~')[1] + "~" + tbNoiDung.Text.MaHoa() + "~" + DateTime.Now;
+                }
+                AddMess(btn);
                 nguoinhancuoi = "you";
                 pnLichSu.VerticalScroll.Value = pnLichSu.VerticalScroll.Maximum;//Sroll Max
                 pnLichSu.Controls.Add(btn);
@@ -188,15 +206,15 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             }
             else if (e.Button == MouseButtons.Right) //Chuột phải là tùy chọn thu hồi tin nhắn
             {
-                idmsg = ((sender as Guna2Button).Tag as string).Split('~')[3];
+                idmsg = ((sender as Guna2Button).Tag as string).Split('~')[0];
             }
-        }
+        }//action Click mess
         private void ThuHoiTinNhan_Click(object sender, EventArgs e)
         {
-            //YC: [ThuHoiMess] ~ id ~ count
-            string kq = Result.Instance.Request($"[DellMess]~{idmsg}~{soMember}");
-
-            MessageBox.Show($"{soMember}");
+            //YC: [DellMess] ~ id_mes
+            string yeucau = "[DellMess]~" + idmsg;
+            string ketqua = Result.Instance.Request(yeucau);
+            
         }
         private void lbStt_Click(object sender, EventArgs e)
         {
@@ -313,8 +331,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             {
                 return;
             }
-        }//Tảitin nhắn
-
+        }//Tải tin nhắn
         private void Lb_stt_Click(object sender, EventArgs e)
         {
             pnLichSu.Controls.Clear();
@@ -400,6 +417,10 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 btn.Location = new Point(x, y);
                 btn.CustomizableEdges.BottomRight = false;
                 btn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
+                ContextMenuStrip cms = new ContextMenuStrip();
+                cms.Items.Add("Thu Hồi");
+                cms.Items[0].Click += DelMess_Click;
+                btn.ContextMenuStrip = cms;
             }
             btn.MouseUp += Btn_MouseClick;
             pnLichSu.Controls.Add(btn);
@@ -409,7 +430,14 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         {
             //Cấu hình button
             ToolTip time = new ToolTip();
-            time.SetToolTip(btn, $"Được gửi vào lúc: {(btn.Tag as string).Split('~')[2]}");
+            string status;
+            if ((btn.Tag as string).Split('~')[0] == "null")
+            {
+                status = "Gửi thất bại";
+            }
+            else
+                status = $"Được gửi vào lúc: {(btn.Tag as string).Split('~')[2]}";
+            time.SetToolTip(btn, status);
             btn.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             btn.BorderRadius = 10;
             btn.Text = ((btn.Tag as string).Split('~')[1]).GiaiMa();//Nội dung
@@ -420,6 +448,12 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             return lb;
             //msg
         }
+
+        private void DelMess_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(idmsg);
+        }
+
         #endregion
     }
 }

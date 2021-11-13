@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LeQuyLam_InfomationSecurity.Forms
@@ -12,7 +7,8 @@ namespace LeQuyLam_InfomationSecurity.Forms
     public partial class FormHome : Form
     {
         #region Fields
-        private string username,displayname;
+        private readonly string username;
+        private string displayname;
         private int type;
         private bool active,activename = false;
         private bool active3, active2 = true;
@@ -171,13 +167,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 labelStatus.Text = "Tài khoản admin";
                 btBaoVe.Hide();
             }
-        }
-        private void LoadingUpdateKey()
-        {
-            MessageBox.Show("Đổi mã khóa thành công");
-            tbKey.Text = key;
-            tbKey.ReadOnly = true;
-            btSua.Text = "Sửa";
         }
         private void HideAllPanel()
         {
