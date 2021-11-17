@@ -302,6 +302,15 @@ namespace Server
                     string traLoi = GroupChatDAO.Instance.NewMessGr(username, tennhom);
                     skXL.Send(Encoding.UTF8.GetBytes(traLoi));
                 }//Tải tin nhắn mới
+                else if (noiDung.StartsWith("[NewMessGroup_Del]"))
+                {
+                    //Yc load tin nhắn = [NewMessGroup_Del] ~ username ~ groupname
+                    GroupChat gc = new GroupChat();
+                    string username = noiDung.Split('~')[1];
+                    string tennhom = noiDung.Split('~')[2];
+                    string traLoi = GroupChatDAO.Instance.NewMessGr_Del(username, tennhom);
+                    skXL.Send(Encoding.UTF8.GetBytes(traLoi));
+                }//Tải tin nhắn mới
                 else if (noiDung.StartsWith("[LoadMemGr]"))
                 {
                     //Yc load thành viên nhóm = [LoadMemGr] ~ username ~ groupname

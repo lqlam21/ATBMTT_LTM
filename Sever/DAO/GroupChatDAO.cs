@@ -215,7 +215,7 @@ namespace Server.DAO
             if (sl == "full")
             {
                 query = "SELECT * FROM TinNhan_NhomChat WHERE tennhom = N'" + gc.TenNhom + "' " +
-                "and trangthai = N'Đã Nhận' and username =N'" + gc.Username + "'";
+                "and trangthai IN (N'Đã Nhận',N'Đã Bị Thu Hồi') and username =N'" + gc.Username + "'";
             }
             else
             {
@@ -228,19 +228,13 @@ namespace Server.DAO
             {
                 foreach (DataRow r in mess.Rows)
                 {
-                    if (gc.Username == r["nguoigui"].ToString())
-                    {
-                        tenhienthi = r["id_mess"].ToString();
-                    }
-
-                    else
-                        tenhienthi = DisPlayName(r["nguoigui"].ToString());
+                    tenhienthi = DisPlayName(r["nguoigui"].ToString());
                     traLoi += tenhienthi + "~" + MD5Helper.Instance.MaHoa(md5.GiaiMa(r["noidung"].ToString())) + "~"
                         + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~"  +
-                        gc.Username + "^";
+                        gc.Username + "~"+ r["id_mess"].ToString() + "~" + r["trangthai"].ToString() + "^";
                 }
                 return traLoi.Substring(0, traLoi.Length - 1);
-                //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc
+                //Trả lời : tên hiển thị + nội dung + time + username người gửi + username người yc + id_mess + trạng thái
             }
             else//Không có  tin nhắn
             {
@@ -249,9 +243,11 @@ namespace Server.DAO
         }
         public string NewMessGr(string us, string gn)
         {
-            GroupChat gc = new GroupChat();
-            gc.Username = us;
-            gc.TenNhom = gn;
+            GroupChat gc = new GroupChat
+            {
+                Username = us,
+                TenNhom = gn
+            };
             MD5Helper md5 = new MD5Helper(TakeKeyGroup(gc.TenNhom));
             string query2 = "SELECT * FROM NhomChat_ThanhVien WHERE trangthai = N'Đang Trong Nhóm' AND tennhom = N'" +
                 gn + "' AND username = N'" + gc.Username + "'";
@@ -259,7 +255,7 @@ namespace Server.DAO
             if (check.Rows.Count > 0)
             {
                 string query = "SELECT * FROM TinNhan_NhomChat WHERE tennhom = N'" + gc.TenNhom + "' and " +
-                "trangthai = N'Đã Gửi' and username = N'" + gc.Username + "'";
+                "trangthai IN (N'Đã Gửi',N'Thu Hồi') and username = N'" + gc.Username + "'";
                 DataTable mess = DataProvider.Instance.ExecuteQuery(query);
                 string traLoi = "";
                 if (mess != null && mess.Rows.Count > 0)//Có tin nhắn
@@ -268,20 +264,76 @@ namespace Server.DAO
                     {
                         string nguoigui = DisPlayName(r["nguoigui"].ToString());
                         traLoi += nguoigui + "~" + MD5Helper.Instance.MaHoa(md5.GiaiMa(r["noidung"].ToString())) + "~"
-                            + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~" 
-                            + gc.Username + "^";
+                            + r["thoigian"].ToString() + "~" + r["nguoigui"].ToString() + "~"
+                            + gc.Username + "~" + r["id_mess"].ToString() + "~" + r["trangthai"].ToString() + "^";
                     }
 
                     foreach (string queryupdate in from DataRow r in mess.Rows
-                                                let queryupdate = "Update TinNhan_NhomChat Set trangthai = N'Đã Nhận'" +
-                                                " Where tennhom = N'" + gc.TenNhom
-                                                + "' and username = N'" + gc.Username + "'"
-                                                select queryupdate)
+                                                   let queryupdate = "Update TinNhan_NhomChat Set trangthai = N'Đã Nhận'" +
+                                                   " Where trangthai = N'Đã Gửi' and tennhom = N'" + gc.TenNhom
+                                                   + "' and username = N'" + gc.Username + "'"
+                                                   select queryupdate)
                     {
                         DataProvider.Instance.ExecuteNonQuery(queryupdate);
                     }
-                    return traLoi.Substring(0, traLoi.Length - 1);
-                    //trả lời =  tên hiển thị ~ nội dung ~ time ~ username người gửi ~ us người nhận
+                    foreach (string queryupdate2 in from DataRow r in mess.Rows
+                                                    let queryupdate = "Update TinNhan_NhomChat Set trangthai = N'Đã Bị Thu Hồi'" +
+                                                    " Where trangthai = N'Thu Hồi' and tennhom = N'" + gc.TenNhom
+                                                    + "' and username = N'" + gc.Username + "'"
+                                                    select queryupdate)
+                    {
+                        DataProvider.Instance.ExecuteNonQuery(queryupdate2);
+                    }
+                        return traLoi.Substring(0, traLoi.Length - 1);
+                    //trả lời =  tên hiển thị ~ nội dung ~ time ~ username người gửi ~ us người nhận ~ trạng thái
+                }
+                else//Không có  tin nhắn
+                {
+                    return "NULL";
+                }
+
+            }// Không bị Kick
+            else
+            {
+                return "NotInGr";
+            }//Bị kick
+        }
+        public string NewMessGr_Del(string us, string gn)
+        {
+            GroupChat gc = new GroupChat
+            {
+                Username = us,
+                TenNhom = gn
+            };
+            MD5Helper md5 = new MD5Helper(TakeKeyGroup(gc.TenNhom));
+            string query2 = "SELECT * FROM NhomChat_ThanhVien WHERE trangthai = N'Đang Trong Nhóm' AND tennhom = N'" +
+                gn + "' AND username = N'" + gc.Username + "'";
+            DataTable check = DataProvider.Instance.ExecuteQuery(query2);
+            if (check.Rows.Count > 0)
+            {
+                string query = "SELECT * FROM TinNhan_NhomChat WHERE tennhom = N'" + gc.TenNhom + "' and " +
+                "trangthai = N'Thu Hồi' and username = N'" + gc.Username + "'";
+                DataTable mess = DataProvider.Instance.ExecuteQuery(query);
+                string traLoi = "";
+                if (mess != null && mess.Rows.Count > 0)//Có tin nhắn
+                {
+                    foreach (DataRow r in mess.Rows)
+                    {
+                        traLoi += r["id_mess"].ToString() + "^";
+                    }
+                    foreach (string queryupdate in from DataRow r in mess.Rows
+                                                   let queryupdate = "Update TinNhan_NhomChat Set trangthai = N'Đã Bị Thu Hồi'" +
+                                                   " Where trangthai = N'Thu Hồi' and tennhom = N'" + gc.TenNhom
+                                                   + "' and username = N'" + gc.Username + "'"
+                                                   select queryupdate)
+                    {
+                        DataProvider.Instance.ExecuteNonQuery(queryupdate);
+                    }
+                    if(traLoi.Length>1)
+                        return traLoi.Substring(0, traLoi.Length - 1);
+                    else
+                        return "NULL";
+                    //trả lời =  id_mess 
                 }
                 else//Không có  tin nhắn
                 {
@@ -297,8 +349,10 @@ namespace Server.DAO
 
         public string LoadMemGr(string us, string gn)
         {
-            GroupChat gc = new GroupChat();
-            gc.Username = us;
+            GroupChat gc = new GroupChat
+            {
+                Username = us
+            };
             string traloi = "";
             string query = "SELECT username FROM NhomChat_ThanhVien WHERE username != N'" +
                 gc.Username + "' and tennhom = N'" + gn + "' AND trangthai = N'Đang Trong Nhóm'";
@@ -323,8 +377,10 @@ namespace Server.DAO
         }
         public void DelMess(string id)
         {
-            DataProvider.Instance.ExecuteNonQuery("UPDATE TinNhan_NhomChat SET noidung  = N'Đã bị thu hồi', " +
+            DataProvider.Instance.ExecuteNonQuery("UPDATE TinNhan_NhomChat SET " +
                 "trangthai = N'Thu Hồi' WHERE id_mess = " + id);
+            DataProvider.Instance.ExecuteNonQuery("UPDATE TinNhan_NhomChat SET " +
+    "trangthai = N'Đã Bị Thu Hồi' WHERE id_mess = " + id + "and username = nguoigui ");
         }
         private string DisPlayName(string us)
         {
