@@ -33,7 +33,7 @@ namespace LeQuyLam_InfomationSecurity
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btGopY = new System.Windows.Forms.Button();
             this.btAdmin = new System.Windows.Forms.Button();
-            this.btChatRieng = new System.Windows.Forms.Button();
+            this.btMaHoaFile = new System.Windows.Forms.Button();
             this.btChatChung = new System.Windows.Forms.Button();
             this.btHome = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
@@ -60,7 +60,7 @@ namespace LeQuyLam_InfomationSecurity
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.panelMenu.Controls.Add(this.btGopY);
             this.panelMenu.Controls.Add(this.btAdmin);
-            this.panelMenu.Controls.Add(this.btChatRieng);
+            this.panelMenu.Controls.Add(this.btMaHoaFile);
             this.panelMenu.Controls.Add(this.btChatChung);
             this.panelMenu.Controls.Add(this.btHome);
             this.panelMenu.Controls.Add(this.panelLogo);
@@ -110,25 +110,25 @@ namespace LeQuyLam_InfomationSecurity
             this.btAdmin.UseVisualStyleBackColor = true;
             this.btAdmin.Click += new System.EventHandler(this.btAdmin_Click);
             // 
-            // btChatRieng
+            // btMaHoaFile
             // 
-            this.btChatRieng.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btChatRieng.FlatAppearance.BorderSize = 0;
-            this.btChatRieng.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btChatRieng.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btChatRieng.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btChatRieng.Image = global::LeQuyLam_InfomationSecurity.Properties.Resources.mahoa;
-            this.btChatRieng.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btChatRieng.Location = new System.Drawing.Point(0, 200);
-            this.btChatRieng.Name = "btChatRieng";
-            this.btChatRieng.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.btChatRieng.Size = new System.Drawing.Size(220, 60);
-            this.btChatRieng.TabIndex = 3;
-            this.btChatRieng.Text = "  Nhắn tin riêng";
-            this.btChatRieng.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btChatRieng.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btChatRieng.UseVisualStyleBackColor = true;
-            this.btChatRieng.Click += new System.EventHandler(this.btChatRieng_Click);
+            this.btMaHoaFile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btMaHoaFile.FlatAppearance.BorderSize = 0;
+            this.btMaHoaFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btMaHoaFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMaHoaFile.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btMaHoaFile.Image = global::LeQuyLam_InfomationSecurity.Properties.Resources.mahoa;
+            this.btMaHoaFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMaHoaFile.Location = new System.Drawing.Point(0, 200);
+            this.btMaHoaFile.Name = "btMaHoaFile";
+            this.btMaHoaFile.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btMaHoaFile.Size = new System.Drawing.Size(220, 60);
+            this.btMaHoaFile.TabIndex = 3;
+            this.btMaHoaFile.Text = "  Mã hóa file";
+            this.btMaHoaFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMaHoaFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btMaHoaFile.UseVisualStyleBackColor = true;
+            this.btMaHoaFile.Click += new System.EventHandler(this.btChatRieng_Click);
             // 
             // btChatChung
             // 
@@ -144,7 +144,7 @@ namespace LeQuyLam_InfomationSecurity
             this.btChatChung.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.btChatChung.Size = new System.Drawing.Size(220, 60);
             this.btChatChung.TabIndex = 2;
-            this.btChatChung.Text = "  Nhắn tin chung";
+            this.btChatChung.Text = "  Nhắn tin nhóm";
             this.btChatChung.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btChatChung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btChatChung.UseVisualStyleBackColor = true;
@@ -193,7 +193,7 @@ namespace LeQuyLam_InfomationSecurity
             // 
             // panelTitleBar
             // 
-            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.panelTitleBar.Controls.Add(this.btnLogout);
             this.panelTitleBar.Controls.Add(this.btnMinisize);
             this.panelTitleBar.Controls.Add(this.btnMaxsize);
@@ -350,7 +350,7 @@ namespace LeQuyLam_InfomationSecurity
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Button btGopY;
         private System.Windows.Forms.Button btAdmin;
-        private System.Windows.Forms.Button btChatRieng;
+        private System.Windows.Forms.Button btMaHoaFile;
         private System.Windows.Forms.Button btChatChung;
         private System.Windows.Forms.Panel panelTitleBar;
         private System.Windows.Forms.Label label1;

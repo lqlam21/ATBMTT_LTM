@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -17,7 +18,7 @@ namespace LeQuyLam_InfomationSecurity
             private set { instance = value; }
         }
         private Result() { }
-        public String Request(String yeuCau)
+        public String Request(string yeuCau)
         {
             // Gui du lieu
             String serverIP = "127.0.0.1";

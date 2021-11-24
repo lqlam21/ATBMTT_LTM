@@ -11,8 +11,11 @@ namespace LeQuyLam_InfomationSecurity.Forms
     public partial class FormChat : Form
     {
         #region Field
-        string username,sTenNhom,key;
-        int soluongGroup = 0;
+        private string username;
+        private string sTenNhom;
+        private readonly string key;
+        private string result;
+        private int soluongGroup = 0;
         List<string> lsGroup = new List<string>();
         #endregion
         public FormChat(string us,string k)
@@ -21,6 +24,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             username = us;
             InitializeComponent();
         }
+        public FormChat(){}
         #region Method
         private void LoadTheme()
         {
@@ -134,11 +138,10 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 {
                     string passnhom = ((sender as Button).Tag as string).Split('~')[3];
                     FormAdGroup groupAd = new FormAdGroup(username, namegr, passnhom,key);
-                        groupAd.Show();
+                    groupAd.Show();
                 }
                 else
                 {
-                    string keynhom = ((sender as Button).Tag as string).Split('~')[3];
                     FormMemberGroup groupMem = new FormMemberGroup(username, namegr);
                     groupMem.Show();
                 }
@@ -165,13 +168,14 @@ namespace LeQuyLam_InfomationSecurity.Forms
         private void timerLoadGr_Tick(object sender, EventArgs e)
         {
             //Yc = [?Gr] ~ username
-            string ketqua = Result.Instance.Request("[?Gr]~" + username);
-            if (string.IsNullOrEmpty(ketqua))
+            result = Result.Instance.Request("[?Gr]~" + username);
+
+            if (string.IsNullOrEmpty(result))
             {
                 this.Close();
                 MessageBox.Show("Mất kết nối máy chủ");
             }
-            else if(Int32.Parse(ketqua) != soluongGroup) //Có xảy ra cập nhật
+            else if(Int32.Parse(result) != soluongGroup) //Có xảy ra cập nhật
             {
                 LoadingGroup();
             }

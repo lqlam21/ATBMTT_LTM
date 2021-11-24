@@ -57,6 +57,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewsMember = new System.Windows.Forms.DataGridView();
             this.toolTipChangePass = new System.Windows.Forms.ToolTip(this.components);
+            this.timerDellMess = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewsMember)).BeginInit();
             this.SuspendLayout();
             // 
@@ -291,7 +292,8 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btChangePassGr.TabIndex = 57;
             this.btChangePassGr.Text = "Đổi pass";
             this.btChangePassGr.UseTransparentBackground = true;
-            this.btChangePassGr.Click += new System.EventHandler(this.btChangePassGr_Click);
+            this.btChangePassGr.MouseLeave += new System.EventHandler(this.btChangePassGr_MouseLeave);
+            this.btChangePassGr.MouseHover += new System.EventHandler(this.btChangePassGr_MouseHover);
             // 
             // pnLichSu
             // 
@@ -418,6 +420,12 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.toolTipChangePass.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipChangePass.ToolTipTitle = "Hướng dẫn";
             // 
+            // timerDellMess
+            // 
+            this.timerDellMess.Enabled = true;
+            this.timerDellMess.Interval = 1000;
+            this.timerDellMess.Tick += new System.EventHandler(this.timerDellMess_Tick);
+            // 
             // FormAdGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,5 +481,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewButtonColumn dc;
         private System.Windows.Forms.ToolTip toolTipChangePass;
+        private System.Windows.Forms.Timer timerDellMess;
     }
 }

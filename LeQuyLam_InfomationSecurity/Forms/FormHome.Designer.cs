@@ -141,7 +141,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.lbTime.AutoSize = true;
             this.lbTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(35)))), ((int)(((byte)(60)))));
             this.lbTime.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTime.Location = new System.Drawing.Point(14, -2);
+            this.lbTime.Location = new System.Drawing.Point(12, 0);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(213, 49);
             this.lbTime.TabIndex = 23;

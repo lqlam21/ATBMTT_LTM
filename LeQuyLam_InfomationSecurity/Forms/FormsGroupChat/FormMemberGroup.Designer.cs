@@ -41,6 +41,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btGui = new Guna.UI2.WinForms.Guna2Button();
             this.DragAnimation = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.pnLichSu = new System.Windows.Forms.Panel();
+            this.timerDellMess = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lbTenNhom
@@ -50,7 +51,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.lbTenNhom.BackColor = System.Drawing.Color.Transparent;
             this.lbTenNhom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTenNhom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lbTenNhom.Location = new System.Drawing.Point(163, 9);
+            this.lbTenNhom.Location = new System.Drawing.Point(20, 7);
             this.lbTenNhom.Name = "lbTenNhom";
             this.lbTenNhom.Size = new System.Drawing.Size(62, 24);
             this.lbTenNhom.TabIndex = 43;
@@ -67,13 +68,13 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.tbBg.Enabled = false;
             this.tbBg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBg.ForeColor = System.Drawing.Color.Silver;
-            this.tbBg.Location = new System.Drawing.Point(10, 480);
+            this.tbBg.Location = new System.Drawing.Point(10, 445);
             this.tbBg.Margin = new System.Windows.Forms.Padding(4);
             this.tbBg.Multiline = false;
             this.tbBg.Name = "tbBg";
             this.tbBg.Padding = new System.Windows.Forms.Padding(7);
             this.tbBg.PasswordChar = false;
-            this.tbBg.Size = new System.Drawing.Size(770, 31);
+            this.tbBg.Size = new System.Drawing.Size(495, 31);
             this.tbBg.TabIndex = 3;
             this.tbBg.Texts = "";
             this.tbBg.UnderlinedStyle = true;
@@ -85,7 +86,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btnMinisize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinisize.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinisize.ForeColor = System.Drawing.Color.White;
-            this.btnMinisize.Location = new System.Drawing.Point(778, -2);
+            this.btnMinisize.Location = new System.Drawing.Point(503, -2);
             this.btnMinisize.Name = "btnMinisize";
             this.btnMinisize.Size = new System.Drawing.Size(30, 30);
             this.btnMinisize.TabIndex = 48;
@@ -100,7 +101,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btnMaxsize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaxsize.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaxsize.ForeColor = System.Drawing.Color.White;
-            this.btnMaxsize.Location = new System.Drawing.Point(809, -2);
+            this.btnMaxsize.Location = new System.Drawing.Point(534, -2);
             this.btnMaxsize.Name = "btnMaxsize";
             this.btnMaxsize.Size = new System.Drawing.Size(30, 30);
             this.btnMaxsize.TabIndex = 47;
@@ -115,7 +116,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(840, -2);
+            this.btnClose.Location = new System.Drawing.Point(565, -2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 46;
@@ -136,9 +137,9 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.tbNoiDung.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbNoiDung.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNoiDung.ForeColor = System.Drawing.Color.Silver;
-            this.tbNoiDung.Location = new System.Drawing.Point(10, 491);
+            this.tbNoiDung.Location = new System.Drawing.Point(10, 456);
             this.tbNoiDung.Name = "tbNoiDung";
-            this.tbNoiDung.Size = new System.Drawing.Size(770, 17);
+            this.tbNoiDung.Size = new System.Drawing.Size(495, 17);
             this.tbNoiDung.TabIndex = 0;
             this.tbNoiDung.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbNoiDung_KeyDown);
             // 
@@ -148,7 +149,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.lbStt.AutoSize = true;
             this.lbStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStt.ForeColor = System.Drawing.Color.Gray;
-            this.lbStt.Location = new System.Drawing.Point(12, 491);
+            this.lbStt.Location = new System.Drawing.Point(12, 456);
             this.lbStt.Name = "lbStt";
             this.lbStt.Size = new System.Drawing.Size(110, 18);
             this.lbStt.TabIndex = 49;
@@ -171,7 +172,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.btGui.ForeColor = System.Drawing.Color.White;
             this.btGui.HoverState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btGui.HoverState.Parent = this.btGui;
-            this.btGui.Location = new System.Drawing.Point(786, 480);
+            this.btGui.Location = new System.Drawing.Point(511, 445);
             this.btGui.Name = "btGui";
             this.btGui.ShadowDecoration.Parent = this.btGui;
             this.btGui.Size = new System.Drawing.Size(76, 41);
@@ -196,15 +197,21 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.pnLichSu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(86)))));
             this.pnLichSu.Location = new System.Drawing.Point(10, 34);
             this.pnLichSu.Name = "pnLichSu";
-            this.pnLichSu.Size = new System.Drawing.Size(852, 439);
+            this.pnLichSu.Size = new System.Drawing.Size(577, 404);
             this.pnLichSu.TabIndex = 57;
+            // 
+            // timerDellMess
+            // 
+            this.timerDellMess.Enabled = true;
+            this.timerDellMess.Interval = 1000;
+            this.timerDellMess.Tick += new System.EventHandler(this.timerDellMess_Tick);
             // 
             // FormMemberGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.ClientSize = new System.Drawing.Size(868, 524);
+            this.ClientSize = new System.Drawing.Size(593, 489);
             this.Controls.Add(this.pnLichSu);
             this.Controls.Add(this.btGui);
             this.Controls.Add(this.lbStt);
@@ -237,5 +244,6 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private Guna.UI2.WinForms.Guna2Button btGui;
         private Guna.UI2.WinForms.Guna2DragControl DragAnimation;
         private System.Windows.Forms.Panel pnLichSu;
+        private System.Windows.Forms.Timer timerDellMess;
     }
 }

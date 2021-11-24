@@ -2,6 +2,8 @@
 using Server.DTO;
 using Server.env;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -27,7 +29,7 @@ namespace Server
                 //Chấp nhận kết nối
                 Socket skXL = sk.Accept();
                 //Nhận dữ liệu
-                Byte[] duLieu = new byte[10240];
+                Byte[] duLieu = new byte[10240000];
                 int demNhan = skXL.Receive(duLieu);
                 String noiDung = Encoding.UTF8.GetString(duLieu, 0, demNhan);
                 if (noiDung.StartsWith("[DangNhap]"))
@@ -361,11 +363,11 @@ namespace Server
                     //Yc = [?Gr] ~ username
                     GroupChat gc = new GroupChat();
                     gc.Username = noiDung.Split('~')[1];
-                    int slMem = GroupChatDAO.Instance.GrLoading(gc.Username);
+                    int slGr = GroupChatDAO.Instance.GrLoading(gc.Username);
                     string traLoi;
-                    if (slMem > 0)
+                    if (slGr > 0)
                     {
-                        traLoi = slMem.ToString();
+                        traLoi = slGr.ToString();
                     }
                     else
                     {
@@ -393,10 +395,46 @@ namespace Server
                     //YC: [DellMess] ~ id_mess
                     GroupChatDAO.Instance.DelMess(noiDung.Split('~')[1]);
                     skXL.Send(Encoding.UTF8.GetBytes("DONE"));
-                }
+                }//Xóa tin nhắn
                 else if (noiDung.StartsWith("[EditPassGr]")){
-                    //Yc = [EditPassGr] ~ Ten Nhom
-                    string grname = noiDung.Split('~')[1];
+                    //Yc = [EditPassGr] ~ Username ~ Ten Nhom ~ Mật khẩu mới
+                    GroupChat gc = new GroupChat
+                    {
+                        Username = noiDung.Split('~')[1],
+                        TenNhom = noiDung.Split('~')[2],
+                        MatKhau = MD5Helper.Instance.GiaiMa(noiDung.Split('~')[3])
+                    };
+                    gc.MaHoaPassGr(GroupChatDAO.Instance.TakeKey(gc.Username));
+                    GroupChatDAO.Instance.EditPassGr(gc.TenNhom,gc.MatKhau);
+                    skXL.Send(Encoding.UTF8.GetBytes("DONE"));
+                }//Đổi mật khẩu nhóm
+                else
+                {
+                    // Nhan du lieu
+                    List<byte> dt = new List<byte>();
+                    for (int i = 0; i < demNhan; i++)
+                        dt.Add(duLieu[i]);
+
+                    // Xu ly du lieu nhan duoc
+                    int chieuDaiHeader = dt[0];
+                    byte[] bHeader = new byte[chieuDaiHeader - 6];
+                    for (int i = 7; i <= chieuDaiHeader; i++)
+                        bHeader[i - 7] = dt[i];
+                    String tenTep = Encoding.UTF8.GetString(bHeader);
+                    String root = "D:\\";
+                    String duongDan = root + "\\" + tenTep;
+                    byte[] noiDungTep = new byte[dt.Count - chieuDaiHeader - 1];
+                    for (int i = chieuDaiHeader + 1; i < dt.Count; i++)
+                        noiDungTep[i - chieuDaiHeader - 1] = dt[i];
+                    // Ghi noi dung tep 
+                    File.WriteAllBytes(duongDan, noiDungTep);
+
+                    // Hien thi len giao dien
+                    Console.WriteLine("Da nhan tep: " + tenTep);
+
+                    // Tra loi cho client
+                    byte[] traLoi = Encoding.UTF8.GetBytes("Đã nhận tệp: " + tenTep);
+                    skXL.Send(traLoi);
                 }
                 // Đóng kết nối
                 skXL.Close();

@@ -94,7 +94,7 @@ namespace LeQuyLam_InfomationSecurity
         {
             DisableButton();
             lblTitle.Text = sHello;
-            panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelTitleBar.BackColor = Color.FromArgb(48, 51, 76);
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
             currentButton = null;
             btnCloseChildForm.Visible = false;
@@ -130,7 +130,7 @@ namespace LeQuyLam_InfomationSecurity
 
         private void btChatRieng_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormChatRieng(), sender);
+            OpenChildForm(new Forms.FormMaHoaFile(), sender);
         }
 
         private void btAdmin_Click(object sender, EventArgs e)

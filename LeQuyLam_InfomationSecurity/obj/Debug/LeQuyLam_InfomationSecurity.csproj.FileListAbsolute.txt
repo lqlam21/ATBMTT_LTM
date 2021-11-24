@@ -171,7 +171,6 @@ D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecur
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChat.resources
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormGopY.resources
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormHome.resources
-D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormChatRieng.resources
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormAdGroup.resources
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.FormMemberGroup.resources
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Properties.Resources.resources
@@ -181,3 +180,5 @@ D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecur
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.exe
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.fInvaite.resources
+D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormMaHoaFile.resources
+D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.MaHoaFile.fUpFile.resources

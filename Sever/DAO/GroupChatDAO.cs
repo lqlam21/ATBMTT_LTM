@@ -50,6 +50,11 @@ namespace Server.DAO
                 }
             }
         }//Update lại dữ liệu khi key thay đổi
+        public void EditPassGr(string gn,string new_pass_gr)
+        {
+            string query = $"UPDATE NhomChat SET matkhau = N'{new_pass_gr}' WHERE tennhom = N'{gn}'";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
         public bool KiemTraGr(string gn)
         {
             string query = "SELECT * FROM NhomChat WHERE tennhom = '" + gn + "'";

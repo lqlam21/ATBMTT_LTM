@@ -48,8 +48,8 @@
     <Compile Include="DAO\GroupChatDAO.cs" />
     <Compile Include="DAO\InfoDAO.cs" />
     <Compile Include="DAO\SendMail.cs" />
+    <Compile Include="DTO\Data_File.cs" />
     <Compile Include="DTO\GroupChat.cs" />
-    <Compile Include="DTO\TinNhan_NhomChat.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="env\MD5Helper.cs" />
     <Compile Include="env\Security.cs" />
