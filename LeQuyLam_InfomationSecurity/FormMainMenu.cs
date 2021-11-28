@@ -130,7 +130,7 @@ namespace LeQuyLam_InfomationSecurity
 
         private void btChatRieng_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormMaHoaFile(), sender);
+            OpenChildForm(new Forms.FormMaHoaFile(username), sender);
         }
 
         private void btAdmin_Click(object sender, EventArgs e)

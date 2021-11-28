@@ -408,7 +408,28 @@ namespace Server
                     GroupChatDAO.Instance.EditPassGr(gc.TenNhom,gc.MatKhau);
                     skXL.Send(Encoding.UTF8.GetBytes("DONE"));
                 }//Đổi mật khẩu nhóm
-                else
+                else if (noiDung.StartsWith("[LoadFile]"))
+                {
+                    // [LoadFile]~usname
+                    User us = new User {
+                        Username = noiDung.Split('~')[1]
+                    };
+                    string response = fileDAO.Instance.LoadFileList(us.Username);
+                    skXL.Send(Encoding.UTF8.GetBytes(response));
+                }
+                else if (noiDung.StartsWith("[DelFile]"))
+                {
+                    //[DelFile]~id File
+                    fileDAO.Instance.DelFile(noiDung.Split('~')[1]);
+                    skXL.Send(Encoding.UTF8.GetBytes("Done"));
+
+                }
+                else if (noiDung.StartsWith("[DownFile]"))
+                {
+                    //[DownFile]~id File
+
+                }
+                else if(duLieu[0] <= 20)
                 {
                     // Nhan du lieu
                     List<byte> dt = new List<byte>();
@@ -416,24 +437,48 @@ namespace Server
                         dt.Add(duLieu[i]);
 
                     // Xu ly du lieu nhan duoc
-                    int chieuDaiHeader = dt[0];
-                    byte[] bHeader = new byte[chieuDaiHeader - 6];
-                    for (int i = 7; i <= chieuDaiHeader; i++)
-                        bHeader[i - 7] = dt[i];
-                    String tenTep = Encoding.UTF8.GetString(bHeader);
-                    String root = "D:\\";
-                    String duongDan = root + "\\" + tenTep;
-                    byte[] noiDungTep = new byte[dt.Count - chieuDaiHeader - 1];
-                    for (int i = chieuDaiHeader + 1; i < dt.Count; i++)
-                        noiDungTep[i - chieuDaiHeader - 1] = dt[i];
-                    // Ghi noi dung tep 
-                    File.WriteAllBytes(duongDan, noiDungTep);
+                    int chieuDaiUserName = dt[0];
+                    byte[] bUsername = new byte[chieuDaiUserName];
+                    for (int i = 1; i <= chieuDaiUserName; i++)
+                    {
+                        bUsername[i - 1] = dt[i];
+                    }
+                    int chieuDaiMaKhoa = dt[chieuDaiUserName + 1];
+                    byte[] bMakhoa = new byte[chieuDaiMaKhoa];
+                    for (int i = 1; i <= chieuDaiMaKhoa; i++)
+                    {
+                        bMakhoa[i - 1] = dt[chieuDaiUserName + 1 + i];
+                    }
+                    int chieuDaiHeader = dt[chieuDaiMaKhoa + chieuDaiUserName + 2];
 
-                    // Hien thi len giao dien
+                    byte[] bHeader = new byte[chieuDaiHeader];
+
+                    for (int i = 1; i <= chieuDaiHeader; i++)
+                        bHeader[i - 1] = dt[i + chieuDaiMaKhoa + chieuDaiUserName +2];
+                    String tenTep = Encoding.UTF8.GetString(bHeader);
+                    byte[] bnoiDungTep = new byte[dt.Count - chieuDaiHeader - 1 - chieuDaiMaKhoa - 1 - chieuDaiUserName -1];
+                    for (int i = chieuDaiHeader + chieuDaiMaKhoa + chieuDaiUserName + 3; i < dt.Count; i++)
+                        bnoiDungTep[i - (chieuDaiHeader + chieuDaiMaKhoa + chieuDaiUserName + 3)] = dt[i];
+                    // Ghi noi dung tep 
+                    var Makhoa = Encoding.UTF8.GetString(bMakhoa);
+                    User us = new User
+                    {
+                        Username = Encoding.UTF8.GetString(bUsername)
+                    };
+                    //var Username = Encoding.UTF8.GetString(bUsername);
+                    MD5Helper md5 = new MD5Helper(Makhoa);
+                    byte[] bNoidungMahoa = md5.MaHoa(bnoiDungTep);
+                    var id = fileDAO.Instance.WriteFile(us.Username, bNoidungMahoa, tenTep);
+                    //String root = "D:\\";
+                    //String duongDan = root + "\\" + tenTep;
+                    //File.WriteAllBytes(duongDan, bnoiDungTep);
+
+
+                    // Hien thi len console
                     Console.WriteLine("Da nhan tep: " + tenTep);
 
                     // Tra loi cho client
-                    byte[] traLoi = Encoding.UTF8.GetBytes("Đã nhận tệp: " + tenTep);
+                    byte[] traLoi = Encoding.UTF8.GetBytes("DONE~"+ id);
                     skXL.Send(traLoi);
                 }
                 // Đóng kết nối

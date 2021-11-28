@@ -31,7 +31,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             this.label5 = new System.Windows.Forms.Label();
             this.btTaiLen = new Guna.UI2.WinForms.Guna2Button();
-            this.flowLayoutNhomChat = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutFileList = new System.Windows.Forms.FlowLayoutPanel();
             this.btChonFile = new Guna.UI2.WinForms.Guna2Button();
             this.lbDuongDan = new System.Windows.Forms.Label();
             this.btGiaiMa = new Guna.UI2.WinForms.Guna2Button();
@@ -52,7 +52,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             // 
             // btTaiLen
             // 
-            this.btTaiLen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btTaiLen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btTaiLen.Animated = true;
             this.btTaiLen.BackColor = System.Drawing.Color.Transparent;
             this.btTaiLen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(20)))), ((int)(((byte)(137)))));
@@ -75,22 +75,22 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.btTaiLen.UseTransparentBackground = true;
             this.btTaiLen.Click += new System.EventHandler(this.btTaiLen_Click);
             // 
-            // flowLayoutNhomChat
+            // flowLayoutFileList
             // 
-            this.flowLayoutNhomChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flowLayoutFileList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutNhomChat.AutoScroll = true;
-            this.flowLayoutNhomChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.flowLayoutNhomChat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(4)))), ((int)(((byte)(4)))));
-            this.flowLayoutNhomChat.Location = new System.Drawing.Point(12, 57);
-            this.flowLayoutNhomChat.Name = "flowLayoutNhomChat";
-            this.flowLayoutNhomChat.Size = new System.Drawing.Size(776, 315);
-            this.flowLayoutNhomChat.TabIndex = 53;
+            this.flowLayoutFileList.AutoScroll = true;
+            this.flowLayoutFileList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.flowLayoutFileList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(4)))), ((int)(((byte)(4)))));
+            this.flowLayoutFileList.Location = new System.Drawing.Point(12, 57);
+            this.flowLayoutFileList.Name = "flowLayoutFileList";
+            this.flowLayoutFileList.Size = new System.Drawing.Size(776, 315);
+            this.flowLayoutFileList.TabIndex = 53;
             // 
             // btChonFile
             // 
-            this.btChonFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btChonFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btChonFile.Animated = true;
             this.btChonFile.BackColor = System.Drawing.Color.Transparent;
             this.btChonFile.BorderColor = System.Drawing.Color.Transparent;
@@ -115,7 +115,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             // 
             // lbDuongDan
             // 
-            this.lbDuongDan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbDuongDan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbDuongDan.AutoSize = true;
             this.lbDuongDan.ForeColor = System.Drawing.Color.Silver;
             this.lbDuongDan.Location = new System.Drawing.Point(115, 393);
@@ -126,7 +126,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             // 
             // btGiaiMa
             // 
-            this.btGiaiMa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btGiaiMa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btGiaiMa.Animated = true;
             this.btGiaiMa.BackColor = System.Drawing.Color.Transparent;
             this.btGiaiMa.BorderRadius = 10;
@@ -149,7 +149,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             // 
             // tbMaKhoa
             // 
-            this.tbMaKhoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbMaKhoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMaKhoa.BorderRadius = 10;
             this.tbMaKhoa.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbMaKhoa.DefaultText = "";
@@ -166,6 +166,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.tbMaKhoa.HoverState.Parent = this.tbMaKhoa;
             this.tbMaKhoa.Location = new System.Drawing.Point(551, 382);
             this.tbMaKhoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbMaKhoa.MaxLength = 20;
             this.tbMaKhoa.Name = "tbMaKhoa";
             this.tbMaKhoa.PasswordChar = '\0';
             this.tbMaKhoa.PlaceholderText = "";
@@ -195,7 +196,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             this.Controls.Add(this.tbMaKhoa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbDuongDan);
-            this.Controls.Add(this.flowLayoutNhomChat);
+            this.Controls.Add(this.flowLayoutFileList);
             this.Controls.Add(this.btGiaiMa);
             this.Controls.Add(this.btChonFile);
             this.Controls.Add(this.btTaiLen);
@@ -211,7 +212,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
         #endregion
         private System.Windows.Forms.Label label5;
         private Guna.UI2.WinForms.Guna2Button btTaiLen;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutNhomChat;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutFileList;
         private Guna.UI2.WinForms.Guna2Button btChonFile;
         private System.Windows.Forms.Label lbDuongDan;
         private Guna.UI2.WinForms.Guna2Button btGiaiMa;

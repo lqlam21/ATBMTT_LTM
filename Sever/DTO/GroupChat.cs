@@ -16,13 +16,6 @@ namespace Server.DTO
             this.MatKhau = row["matkhau"].ToString();
             this.Username = row["username"].ToString();
         }
-
-        public GroupChat(string tennhom, string matkhau, string username)
-        {
-            this.TenNhom = tennhom;
-            this.Username = username;
-            this.MatKhau = matkhau;
-        }
         
         public GroupChat(){}
 

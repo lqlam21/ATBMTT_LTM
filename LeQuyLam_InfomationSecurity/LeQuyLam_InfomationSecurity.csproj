@@ -126,12 +126,6 @@
     <Compile Include="Forms\FormsGroupChat\FormMemberGroup.Designer.cs">
       <DependentUpon>FormMemberGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MaHoaFile\fUpFile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MaHoaFile\fUpFile.Designer.cs">
-      <DependentUpon>fUpFile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
@@ -168,9 +162,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormsGroupChat\FormMemberGroup.resx">
       <DependentUpon>FormMemberGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MaHoaFile\fUpFile.resx">
-      <DependentUpon>fUpFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

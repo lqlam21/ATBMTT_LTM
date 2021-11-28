@@ -181,4 +181,3 @@ D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecur
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.pdb
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormsGroupChat.fInvaite.resources
 D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.FormMaHoaFile.resources
-D:\BTL_ATBMTT\BTL\LeQuyLam_InfomationSecurity\obj\Debug\LeQuyLam_InfomationSecurity.Forms.MaHoaFile.fUpFile.resources

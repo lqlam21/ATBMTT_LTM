@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\Dataprovider.cs" />
+    <Compile Include="DAO\fileDAO.cs" />
     <Compile Include="DAO\GroupChatDAO.cs" />
     <Compile Include="DAO\InfoDAO.cs" />
     <Compile Include="DAO\SendMail.cs" />

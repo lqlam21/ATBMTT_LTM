@@ -50,14 +50,6 @@ namespace Server.env
             return Encoding.UTF8.GetString(output);
         }
 
-        public string EncodeBase64(string data)
-        {
-            string s = data.Trim().Replace(" ", "+");
-            if (s.Length % 4 > 0)
-                s = s.PadRight(s.Length + 4 - s.Length % 4, '=');
-            return Encoding.UTF8.GetString(Convert.FromBase64String(s));
-        }
-
 
         public byte[] MaHoa(byte[] duLieuCanMaHoa)
         {

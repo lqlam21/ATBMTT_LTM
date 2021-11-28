@@ -408,36 +408,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 return;
             }
         }//Tải tin nhắn
-        //private void ActiveBtChangepass(bool status, Guna2Button btn)
-        //{
-        //    btn.Invoke((MethodInvoker)delegate
-        //    {
-        //        if (status)
-        //        {
-        //            this.Controls.Add(pnChangePass);
-        //            pnChangePass.Location = new Point(btChangePassGr.Location.X - 70, btChangePassGr.Location.Y + btChangePassGr.Height + 10);
-        //            pnChangePass.BringToFront();
-        //            Thread thrd = new Thread(ChangePassShow)
-        //            {
-        //                IsBackground = true
-        //            };
-        //            thrd.Start();
-        //            tbChangePass.Left = (pnChangePass.Width - tbChangePass.Width) / 2;
-        //            tbChangePass.Top = (40 - tbChangePass.Height) / 2;
-        //            pnChangePass.Controls.Add(tbChangePass);
-        //            tbChangePass.Focus();
-        //        }
-        //        else 
-        //        {
-        //            Thread thrd = new Thread(ChangePassHide)
-        //            {
-        //                IsBackground = true
-        //            };
-        //            thrd.Start();
-        //            tbChangePass.Text = "";
-        //        }
-        //    });
-        //}
+
         private void ChangePassShow()
         {
             try

@@ -101,10 +101,10 @@ namespace Server.DAO
                 }
                 //Ket qua tra loi =  tên nhóm ~ tên thành viên ~ chức vụ ~ mật khẩu nhóm ^ (nếu là trưởng nhóm)
                 //KetQua tra lời = tên nhóm ~ tên thành viên ~ chức vụ ~ key chung của nhóm ^( nếu là thành viên)
-                return traloi = traloi.Substring(0, traloi.Length - 1);
+                return  traloi.Substring(0, traloi.Length - 1);
             }
             else
-                return traloi = "[NULL]";
+                return "[NULL]";
         } //Tải danh sách nhóm
         public bool LoginGr(string gn, string pass)
         {

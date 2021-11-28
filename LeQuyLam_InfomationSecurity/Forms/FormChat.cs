@@ -81,7 +81,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     //Xử lý màu backgr cho các nhóm quản lý
                     if (item.Split('~')[2].ToString() == "truongnhom")
                     {
-                        btn.BackColor = Color.LightPink;
+                        btn.BackColor = ThemeColor.ChangeColorBrightness(ThemeColor.PrimaryColor, +0.3);
                         btn.Text = tennhom + "\n\r(Nhóm của bạn)";
                         cms.Items.Add("Xóa nhóm");
                         cms.Items[0].Click += DelGroup_Click;
@@ -90,7 +90,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     }//Xử lý khi nhóm chat do user lập
                     else
                     {
-                        btn.BackColor = Color.LightBlue;
+                        btn.BackColor = ThemeColor.ChangeColorBrightness(ThemeColor.PrimaryColor, +0.5);
                         btn.Text = tennhom;
                         cms.Items.Add("Rời nhóm");
                         btn.ContextMenuStrip = cms;
@@ -114,7 +114,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             {
                 //Yêu cầu xóa: [DelGr] ~ tên nhóm
                 string yeucau = "[DelGr]~" + sTenNhom;
-                string ketqua = Result.Instance.Request(yeucau);
+                _ = Result.Instance.Request(yeucau);
             }
             else
             {
@@ -125,7 +125,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             //Yêu cầu rời: [OutGr] ~ tên nhóm
             string yeucau = "[OutGr]~" + sTenNhom + "~" + username;
-            string ketqua = Result.Instance.Request(yeucau);
+            _ = Result.Instance.Request(yeucau);
         }
         private void Btn_MouseClick(object sender, MouseEventArgs e)
         {
