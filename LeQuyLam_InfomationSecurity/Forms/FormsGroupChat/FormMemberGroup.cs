@@ -100,7 +100,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             else if (result_tinnhanThuHoi == "NotInGr")
             {
                 this.Close();
-                MessageBox.Show("Nhóm đã bị xóa");
+                MessageBox.Show("Bạn đã bị kick khỏi nhóm");
             }
             else
             {
@@ -120,7 +120,8 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 }
             }
             result_tinnhanMoi = Result.Instance.Request("[NewMessGroup]~" + username + "~" + groupname);
-            if(!String.IsNullOrEmpty(result_tinnhanMoi) && result_tinnhanMoi != "NULL")
+            if(!string.IsNullOrEmpty(result_tinnhanMoi) && result_tinnhanMoi != "NULL"
+                && result_tinnhanMoi != "NotInGr")
             {
                 List<String> dsTinNhan = result_tinnhanMoi.Split('^').ToList();
                 for (int i = 0; i < dsTinNhan.Count; i++)
@@ -339,7 +340,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 else
                     y = (stackMess.Peek()).Location.Y + btn.Height + lb.Height;//Chèn lb
             }
-            if (y + btn.Height - lb.Height >= y_max)
+            if (y + btn.Height - lb.Height > y_max)
             {
                 y = y_max;
                 x = pnLichSu.Width - btn.Size.Width - 20;

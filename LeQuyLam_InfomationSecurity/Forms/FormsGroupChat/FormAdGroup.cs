@@ -188,7 +188,14 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             }
             result_tinnhanMoi = Result.Instance.Request("[NewMessGroup]~" +username + "~" + groupname);
             result_slMem = Result.Instance.Request("[?Member]~" + groupname);
-            if ( !string.IsNullOrEmpty(result_tinnhanMoi) && result_tinnhanMoi != "NULL")
+            if (!String.IsNullOrEmpty(result_slMem) && Int32.Parse(result_slMem) != soMember)
+            {
+                DataGridViewsMember.DataSource = null;
+                DataGridViewsMember.Rows.Clear();
+                LoadMemGr();
+            }
+            if ( !string.IsNullOrEmpty(result_tinnhanMoi) && result_tinnhanMoi != "NULL" 
+                && result_tinnhanMoi != "NotInGr")
             {
                 List<String> dsTinNhan = result_tinnhanMoi.Split('^').ToList();
                 for (int i = 0; i < dsTinNhan.Count; i++)
@@ -211,12 +218,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 }
                 nguoinhancuoi = dsTinNhan[dsTinNhan.Count - 1].Split('~')[3];
             }
-            if (!String.IsNullOrEmpty(result_slMem) && Int32.Parse(result_slMem) != soMember)
-            {
-                DataGridViewsMember.DataSource = null;
-                DataGridViewsMember.Rows.Clear();
-                LoadMemGr();
-            }
+            
 
         }//Tải tin nhắn mới
         private void btGui_Click(object sender, EventArgs e)
