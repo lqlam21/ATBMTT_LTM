@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,6 +82,28 @@ namespace Server.DAO
             string query = "DELETE Data_File WHERE id = " + id;
             DataProvider.Instance.ExecuteNonQuery(query);
 
+        }
+        public byte[] DownFile(string id)
+        {
+            DataTable dt = DataProvider.Instance.ExecuteQuery("SELECT dulieu,tenfile FROM Data_File WHERE id = " 
+                + id);
+            string tenTep = dt.Rows[0][1].ToString();
+            tenTep = tenTep.Replace(" ", "_");
+            byte[] bHeader = Encoding.UTF8.GetBytes(tenTep);
+            byte[] bnoiDungTep = (byte[])dt.Rows[0][0];
+            byte[] bResponse = new byte[bHeader.Length + 1 + bnoiDungTep.Length];
+            bResponse[0] = (byte)bHeader.Length;
+            for (int i = 0; i < bHeader.Length; i++)
+            {
+                bResponse[i + 1] = bHeader[i];
+            }
+            // Ghep noi dung tep vao mang byte gui di
+            for (int i = 0; i < bnoiDungTep.Length; i++)
+            {
+                bResponse[i + 1 + bHeader.Length] = bnoiDungTep[i];
+            }
+
+            return bResponse;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Server
                 //Chấp nhận kết nối
                 Socket skXL = sk.Accept();
                 //Nhận dữ liệu
-                Byte[] duLieu = new byte[10240000];
+                Byte[] duLieu = new byte[102400000];
                 int demNhan = skXL.Receive(duLieu);
                 String noiDung = Encoding.UTF8.GetString(duLieu, 0, demNhan);
                 if (noiDung.StartsWith("[DangNhap]"))
@@ -427,7 +427,8 @@ namespace Server
                 else if (noiDung.StartsWith("[DownFile]"))
                 {
                     //[DownFile]~id File
-
+                    //fileDAO.Instance.DownFile(noiDung.Split('~')[1]);
+                    skXL.Send(fileDAO.Instance.DownFile(noiDung.Split('~')[1]));
                 }
                 else if(duLieu[0] <= 20)
                 {
@@ -471,7 +472,7 @@ namespace Server
                     var id = fileDAO.Instance.WriteFile(us.Username, bNoidungMahoa, tenTep);
                     //String root = "D:\\";
                     //String duongDan = root + "\\" + tenTep;
-                    //File.WriteAllBytes(duongDan, bnoiDungTep);
+                    //File.WriteAllBytes(duongDan, bNoidungMahoa);
 
 
                     // Hien thi len console
@@ -480,7 +481,7 @@ namespace Server
                     // Tra loi cho client
                     byte[] traLoi = Encoding.UTF8.GetBytes("DONE~"+ id);
                     skXL.Send(traLoi);
-                }
+                }//Up file
                 // Đóng kết nối
                 skXL.Close();
                 skXL.Dispose();

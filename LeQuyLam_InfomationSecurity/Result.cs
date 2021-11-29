@@ -87,5 +87,37 @@ namespace LeQuyLam_InfomationSecurity
                 }
             }
         }
+        public byte[] bRequest(string yeuCau,ref int demNhan)
+        {
+            // Gui du lieu
+            String serverIP = "127.0.0.1";
+            int port = 12000;
+
+            using (Socket sk = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            {
+                try
+                {
+                    // Ket noi den may chu
+                    sk.Connect(IPAddress.Parse(serverIP), port);
+                    byte[] duLieu = Encoding.UTF8.GetBytes(yeuCau);
+                    // Gui yeu cau
+                    int dem = sk.Send(duLieu);
+
+                    // Nhan tra loi va hien thi
+                    byte[] ketQua = new byte[102400000];
+                    demNhan = sk.Receive(ketQua);
+                    var c =ketQua.Length;
+                    // Dong ket noi
+                    sk.Close();
+                    sk.Dispose();
+
+                    return ketQua;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

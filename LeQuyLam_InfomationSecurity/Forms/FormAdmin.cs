@@ -28,7 +28,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 }
             }
             label4.ForeColor = ThemeColor.SecondaryColor;
-            label5.ForeColor = ThemeColor.PrimaryColor;
         }
 
         private void FormAdmin_Load(object sender, EventArgs e)

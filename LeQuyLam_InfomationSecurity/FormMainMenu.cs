@@ -135,7 +135,10 @@ namespace LeQuyLam_InfomationSecurity
 
         private void btAdmin_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormAdmin(), sender);
+            if (type == 0)
+                OpenChildForm(new Forms.FormAdmin(), sender);
+            else
+                MessageBox.Show("Bạn không được cấp quyền truy cập chức năng này.");
         }
 
         private void btGopY_Click(object sender, EventArgs e)

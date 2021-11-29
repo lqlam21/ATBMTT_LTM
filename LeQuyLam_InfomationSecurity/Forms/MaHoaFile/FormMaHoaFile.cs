@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
@@ -82,7 +83,6 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 {
 
                     flowLayoutFileList.Controls.Remove(btns);
-                    MessageBox.Show("Gửi thất bại.");
                 }
             }
             else if (dialogResult == DialogResult.No)
@@ -95,13 +95,39 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             //[DownFile]~id File
             //Chọn nơi save
+            int demNhan = 0;
+            string yc = "[DownFile]~" + idFile;
+            byte[] data = Result.Instance.bRequest(yc,ref demNhan);
+            //// Nhan du lieu
+            List<byte> dt = new List<byte>();
+            for (int i = 0; i < demNhan; i++)
+                dt.Add(data[i]);
+            ////Boc tach du lieu
+            int nTenTep = dt[0];
+
+            byte[] bTenTep = new byte[nTenTep];
+            for (int i = 1; i <= nTenTep; i++)
+            {
+                bTenTep[i - 1] = dt[i];
+            }
+
+            byte[] bnoiDungTep = new byte[dt.Count - nTenTep - 1];
+            for (int i = nTenTep + 1; i < dt.Count; i++)
+                bnoiDungTep[i - nTenTep - 1] = dt[i];
+
+            String tenTep = Encoding.UTF8.GetString(bTenTep);
+            string[] arrtenfile = tenTep.Split('.'); ;
+            string tenfile = arrtenfile[0];
+            string dinhdangfile = arrtenfile[1];
+
             SaveFileDialog sd = new SaveFileDialog();
-            sd.Filter = "Tệp tin (*" + ".txt" + ") | *" + ".txt";
-            sd.FileName = "123";
+            sd.Filter = $"Tệp tin (*.{dinhdangfile}) | *.{dinhdangfile}";
+            sd.FileName = tenfile;
             if (sd.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllBytes(sd.FileName, Encoding.UTF8.GetBytes(ndt));
+                File.WriteAllBytes(sd.FileName, bnoiDungTep);
             }
+            MessageBox.Show("Tải thành công!");
         }
 
         private void Btn_MouseUp(object sender, MouseEventArgs e)
@@ -127,7 +153,13 @@ namespace LeQuyLam_InfomationSecurity.Forms
             };
             if (od.ShowDialog() == DialogResult.OK)
             {
-                lbDuongDan.Text = od.FileName;
+                var duongdan = od.FileName;
+                if (duongdan.Length > 30)
+                {
+                    duongdan = duongdan.Substring(0, 28);
+                    duongdan += "...";
+                }
+                lbDuongDan.Text = duongdan;
             }
         }
 
@@ -201,7 +233,8 @@ namespace LeQuyLam_InfomationSecurity.Forms
                     btn.BackColor = ThemeColor.PrimaryColor;
                     cms.Items.Add("Tải về (Tệp đang trong dạng mã hóa)");
                     cms.Items.Add("Xóa/Gỡ File");
-                    //cms.Items[0].Click += DelGroup_Click;
+                    cms.Items[0].Click += DownFile_Click;
+                    cms.Items[1].Click += DelFile_Click;
                     btn.ContextMenuStrip = cms;
                 }
             }
@@ -213,7 +246,55 @@ namespace LeQuyLam_InfomationSecurity.Forms
 
         private void btGiaiMa_Click(object sender, EventArgs e)
         {
-
+            if (lbDuongDan.Text.Length >= 3 && tbMaKhoa.Text.Length > 0)
+            {
+                byte[] noiDungTep = File.ReadAllBytes(lbDuongDan.Text);
+                String tenTep = Path.GetFileName(lbDuongDan.Text);
+                tenTep = tenTep.Replace(" ", "_");
+                string[] arrtenfile = tenTep.Split('.'); ;
+                string tenfile = arrtenfile[0];
+                string dinhdangfile = arrtenfile[1];
+                byte[] duLieu = GMmd5(tbMaKhoa.Text, noiDungTep);
+                if(duLieu != null) {
+                    SaveFileDialog sd = new SaveFileDialog();
+                    sd.Filter = $"Tệp tin (*.{dinhdangfile}) | *.{dinhdangfile}";
+                    sd.FileName = tenfile;
+                    if (sd.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllBytes(sd.FileName, duLieu);
+                        MessageBox.Show("Giải mã thành công.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng cung cấp đủ thông tin đầu vào!");
+            }
+        }
+        private byte[] GMmd5(string matkhau, byte[] duLieuCanGiaiMa)
+        {
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                using (TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider())
+                {
+                    des.Key = md5.ComputeHash(Encoding.UTF8.GetBytes(matkhau));
+                    des.Mode = CipherMode.ECB;
+                    des.Padding = PaddingMode.PKCS7;
+                    using (ICryptoTransform tran = des.CreateDecryptor())
+                    {
+                        try
+                        {
+                            byte[] output = tran.TransformFinalBlock(duLieuCanGiaiMa, 0, duLieuCanGiaiMa.Length);
+                            return output;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Mã khóa không chính xác");
+                            return null;
+                        }
+                    }
+                }
+            }
         }
     }
 }
