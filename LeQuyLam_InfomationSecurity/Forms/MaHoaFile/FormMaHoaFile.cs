@@ -12,7 +12,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
 {
     public partial class FormMaHoaFile : Form
     {
-        string username,idFile;
+        string username,idFile,sDuongdan;
         Button btns;
         public FormMaHoaFile(string us)
         {
@@ -154,6 +154,7 @@ namespace LeQuyLam_InfomationSecurity.Forms
             if (od.ShowDialog() == DialogResult.OK)
             {
                 var duongdan = od.FileName;
+                sDuongdan = od.FileName;
                 if (duongdan.Length > 30)
                 {
                     duongdan = duongdan.Substring(0, 28);
@@ -170,12 +171,12 @@ namespace LeQuyLam_InfomationSecurity.Forms
                 #region Chuan bi du lieu de gui
                 string makhoa = tbMaKhoa.Text;
                 byte[] bMakhoa = Encoding.UTF8.GetBytes(makhoa);
-                String tenTep = Path.GetFileName(lbDuongDan.Text);
+                String tenTep = Path.GetFileName(sDuongdan);
                 tenTep = tenTep.Replace(" ", "_");
                 byte[] bNguoigui = Encoding.UTF8.GetBytes(username);
 
                 byte[] bHeader = Encoding.UTF8.GetBytes(tenTep);
-                byte[] noiDungTep = File.ReadAllBytes(lbDuongDan.Text);
+                byte[] noiDungTep = File.ReadAllBytes(sDuongdan);
                 byte[] dt = new byte[bNguoigui.Length + 1 + 1 + bMakhoa.Length + 1 + bHeader.Length + noiDungTep.Length];
                 dt[0] = (byte)bNguoigui.Length;
                 for (int i = 0; i < bNguoigui.Length; i++)
@@ -248,8 +249,8 @@ namespace LeQuyLam_InfomationSecurity.Forms
         {
             if (lbDuongDan.Text.Length >= 3 && tbMaKhoa.Text.Length > 0)
             {
-                byte[] noiDungTep = File.ReadAllBytes(lbDuongDan.Text);
-                String tenTep = Path.GetFileName(lbDuongDan.Text);
+                byte[] noiDungTep = File.ReadAllBytes(sDuongdan);
+                String tenTep = Path.GetFileName(sDuongdan);
                 tenTep = tenTep.Replace(" ", "_");
                 string[] arrtenfile = tenTep.Split('.'); ;
                 string tenfile = arrtenfile[0];
