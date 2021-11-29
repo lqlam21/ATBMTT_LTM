@@ -300,7 +300,9 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 string ketqua = Result.Instance.Request(yeucau);
                 if(ketqua != "DONE" || !string.IsNullOrEmpty(ketqua))
                 {
+                    listUsMember.RemoveAt(id);
                     DataGridViewsMember.Rows.RemoveAt(id);
+
                 }
                 else
                 {
@@ -332,9 +334,11 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             //Yc load thành viên nhóm = [LoadMemGr] ~ username ~ groupname
             //Kq trả về  = username + displayname
             string yeucau = "[LoadMemGr] ~" + username + "~" + groupname;
+
             string ketqua = Result.Instance.Request(yeucau);
             if (ketqua != "NULL" && !string.IsNullOrEmpty(ketqua))
             {
+                listUsMember.Clear();
                 List<string> listMember = ketqua.Split('^').ToList();
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Name");
