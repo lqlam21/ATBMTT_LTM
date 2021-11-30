@@ -15,7 +15,7 @@ namespace Server
         static void Main(string[] args)
         {
             Console.WriteLine("May chu bat dau hoat dong ...");
-            String serverIP = "127.0.0.1";
+            String serverIP = "192.168.1.49";
             int port = 12000;
 
             //Khởi tạo
@@ -482,6 +482,10 @@ namespace Server
                     byte[] traLoi = Encoding.UTF8.GetBytes("DONE~"+ id);
                     skXL.Send(traLoi);
                 }//Up file
+                else
+                {
+                    Console.WriteLine("Khong xac dinh duoc yeu cau");
+                }
                 // Đóng kết nối
                 skXL.Close();
                 skXL.Dispose();

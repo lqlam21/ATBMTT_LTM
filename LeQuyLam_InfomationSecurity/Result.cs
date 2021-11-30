@@ -21,7 +21,7 @@ namespace LeQuyLam_InfomationSecurity
         public String Request(string yeuCau)
         {
             // Gui du lieu
-            String serverIP = "127.0.0.1";
+            String serverIP = "192.168.1.49";
             int port = 12000;
 
             using (Socket sk = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
