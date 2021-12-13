@@ -36,6 +36,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdGroup));
             this.lbTenNhom = new System.Windows.Forms.Label();
             this.tbMatKhauGr = new System.Windows.Forms.TextBox();
             this.lbMatKhauGr = new System.Windows.Forms.Label();
@@ -448,6 +449,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.Controls.Add(this.DataGridViewsMember);
             this.Controls.Add(this.lbMatKhauGr);
             this.Controls.Add(this.lbTenNhom);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(828, 511);
             this.Name = "FormAdGroup";
             this.Text = "FormAdGroup";

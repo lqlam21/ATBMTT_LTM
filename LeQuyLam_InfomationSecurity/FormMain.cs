@@ -53,6 +53,8 @@ namespace LeQuyLam_InfomationSecurity
             {
                 txbUserName.Text = fDangKy.tbID.Text;
                 txbPassword.Text = fDangKy.tbPassword.Text;
+                lbstt2.Visible = false;
+                lbstt1.Visible = false;
             }
 
         }

@@ -15,7 +15,7 @@ namespace Server
         static void Main(string[] args)
         {
             Console.WriteLine("May chu bat dau hoat dong ...");
-            String serverIP = "192.168.1.49";
+            String serverIP = "127.0.0.1";
             int port = 12000;
 
             //Khởi tạo

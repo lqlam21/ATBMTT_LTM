@@ -30,6 +30,7 @@ namespace LeQuyLam_InfomationSecurity
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDangKy));
             this.pnBgLogin = new System.Windows.Forms.Panel();
             this.pnNhapCode = new System.Windows.Forms.Panel();
             this.tbCode = new System.Windows.Forms.TextBox();
@@ -434,6 +435,7 @@ namespace LeQuyLam_InfomationSecurity
             this.ClientSize = new System.Drawing.Size(371, 494);
             this.Controls.Add(this.pnBgLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDangKy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormDangKy";

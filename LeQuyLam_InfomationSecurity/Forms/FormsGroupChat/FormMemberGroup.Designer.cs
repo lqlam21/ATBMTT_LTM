@@ -30,6 +30,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMemberGroup));
             this.lbTenNhom = new System.Windows.Forms.Label();
             this.tbBg = new CSharpControl.Control.RJTextBox();
             this.btnMinisize = new System.Windows.Forms.Button();
@@ -221,6 +222,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tbBg);
             this.Controls.Add(this.lbTenNhom);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(581, 491);
             this.Name = "FormMemberGroup";
             this.Text = "FormMemberGroup";

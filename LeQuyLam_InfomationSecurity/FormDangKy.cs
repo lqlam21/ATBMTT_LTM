@@ -43,9 +43,9 @@ namespace LeQuyLam_InfomationSecurity
             {
                 MessageBox.Show("Không trống thông tin!");
             }
-            else if (tbID.Text.Contains("~") || tbID.Text.Contains("^"))
+            else if (tbID.Text.Contains("~") || tbID.Text.Contains("^") || tbID.Text.Contains(" "))
             {
-                MessageBox.Show("Tên đăng nhập không được phép sử dụng ký tự đặc biệt");
+                MessageBox.Show("Tên đăng nhập không hợp lệ");
                 tbID.Text = "";
                 tbID.Focus();
             }

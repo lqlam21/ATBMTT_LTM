@@ -270,7 +270,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     }
                 }
                 nguoinhancuoi = dsTinNhan[dsTinNhan.Count - 1].Split('~')[3];
-                if (dsTinNhan.Count == 10)
+                if (dsTinNhan.Count == 8)
                 {
                     Label lb_stt = new Label
                     {

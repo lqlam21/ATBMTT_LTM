@@ -277,18 +277,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                 gunabutton = (Guna2Button)sender;
             }
         }//action Click mess
-        //private void btChangePassGr_Click(object sender, EventArgs e)
-        //{
-        //    if (actChangePass)
-        //    {
-        //        actChangePass = false;
-        //    }
-        //    else
-        //    {
-        //        actChangePass = true;
-        //    }
-        //    ActiveBtChangepass(actChangePass,(sender as Guna2Button));
-        //}
+
         private void DataGridViewsMember_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == DataGridViewsMember.Columns["dc"].Index)
@@ -391,7 +380,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
                     }
                 }
                 nguoinhancuoi = dsTinNhan[dsTinNhan.Count-1].Split('~')[3];
-                if (dsTinNhan.Count ==10)
+                if (dsTinNhan.Count ==8)
                 {
                     Label lb_stt = new Label
                     {

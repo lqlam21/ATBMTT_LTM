@@ -30,6 +30,7 @@ namespace LeQuyLam_InfomationSecurity
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.pnBgLogin = new System.Windows.Forms.Panel();
             this.pnXacMinh = new System.Windows.Forms.Panel();
             this.lbTimeLate = new System.Windows.Forms.Label();
@@ -412,6 +413,7 @@ namespace LeQuyLam_InfomationSecurity
             this.Controls.Add(this.pnBgLogin);
             this.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

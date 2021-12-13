@@ -30,6 +30,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fInvaite));
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.tbUsername = new Guna.UI2.WinForms.Guna2TextBox();
             this.btExit = new Guna.UI2.WinForms.Guna2Button();
@@ -137,6 +138,7 @@ namespace LeQuyLam_InfomationSecurity.Forms.FormsGroupChat
             this.Controls.Add(this.btExit);
             this.Controls.Add(this.tbUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(187, 88);
             this.MinimizeBox = false;
